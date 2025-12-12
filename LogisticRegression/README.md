@@ -2,7 +2,7 @@
 **Aim: To use a similar approach like Linear Regression but to calculate the probability of an event most likely to occur**
 
 # Formula: 
-$$\frac{1}{1+e^{-(b_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{m}x_{m})}}\\= \frac{1}{1+e^{-z}}$$
+$$\frac{1}{1+e^{-(b_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{m}x_{m})}}\= \frac{1}{1+e^{-z}}$$
 
 **Where:**\
 $\theta_{m}$ = Weights for mth column (mth feature)\
@@ -14,11 +14,11 @@ $$g(z)=\frac{1}{1+e^{-z}}$$\
 $$z=\sum_{i=1}^{n}x_{i}\theta_{i}+b$$
 
 **Derivative of sigmoid function in logistic regression:**\
-$$
+```math
 \begin{aligned}
 \frac{\partial }{\partial z}g(z) = \frac{\partial }{\partial z}(\frac{1}{1+e^{-z}})\\=\frac{0-(-e^{-z})}{(1+e^{-z})^{2}}\\=\frac{e^{-z}}{(1+e^{-z})^{2}}\\=\frac{1}{1+e^{-z}}\cdot (1-\frac{1}{1+e^{-z}})\\=g(z)\cdot (1-g(z))
 \end{aligned}
-$$\
+```
 **Where:**\
 z = $\sum_{i=1}^{n}x_{i}\theta_{i}+b$\
 g(z) = Sigmoid Function
@@ -32,7 +32,7 @@ The use of L2 Ridge Regularization is to reduce the chances of model from overfi
 The penalty helps the model to be more careful with loses as small difference in loss can result in large value of penalty.
 
 **Formula:**\
-$$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$$\
+$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$\
 **Where:**\
 $\theta$ = Weights with respect to Cost Function(loss)\
 n = Total rows of data\
@@ -47,7 +47,7 @@ In order to lower our loss until it reaches the minimum value, we need gradient 
 Thus, we have to find the derivative of our coss function, or loss, in order to minimize the loss such that its gradient = 0
 
 **Derivative of Cost Function with respect to bias:**\
-$$
+```math
 \begin{aligned} 
 & \frac{\partial }{\partial b} L(\theta)\\ 
 &=\frac{\partial }{\partial b}(-\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k}))\\ 
@@ -63,10 +63,10 @@ $$
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})\\ 
 \end{aligned}
-$$
+```
 
 **Derivative of Cost Function with respect to weights and Ridge L2 Regularisation:**\
-$$
+```math
 \begin{aligned} 
 & \frac{\partial }{\partial \theta_{j}} [L(\theta)+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})]\\ 
 &=\frac{\partial }{\partial \theta_{j}}[(-\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i})))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})]\\ 
@@ -82,7 +82,7 @@ $$
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})x_{ij}+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})x_{ij}+2\lambda\theta_{j}\\ 
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Cost Function / Loss\
