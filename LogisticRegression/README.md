@@ -13,7 +13,7 @@ $b_{0}$ = Bias
 $$g(z)=\frac{1}{1+e^{-z}}$$\
 $$z=\sum_{i=1}^{n}x_{i}\theta_{i}+b$$
 
-**Derivative of sigmoid function in logistic regression:**\
+**Derivative of sigmoid function in logistic regression:**
 ```math
 \begin{aligned}
 \frac{\partial }{\partial z}g(z) = \frac{\partial }{\partial z}(\frac{1}{1+e^{-z}})\\=\frac{0-(-e^{-z})}{(1+e^{-z})^{2}}\\=\frac{e^{-z}}{(1+e^{-z})^{2}}\\=\frac{1}{1+e^{-z}}\cdot (1-\frac{1}{1+e^{-z}})\\=g(z)\cdot (1-g(z))
@@ -46,7 +46,7 @@ Penalty = $\lambda\sum_{i=1}^{n}(\theta^{2})$
 In order to lower our loss until it reaches the minimum value, we need gradient descent to gradually reduce the loss by adjusting its gradient\
 Thus, we have to find the derivative of our coss function, or loss, in order to minimize the loss such that its gradient = 0
 
-**Derivative of Cost Function with respect to bias:**\
+**Derivative of Cost Function with respect to bias:**
 ```math
 \begin{aligned} 
 & \frac{\partial }{\partial b} L(\theta)\\ 
@@ -69,7 +69,7 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 \end{aligned}
 ```
 
-**Derivative of Cost Function with respect to weights and Ridge L2 Regularisation:**\
+**Derivative of Cost Function with respect to weights and Ridge L2 Regularisation:**
 ```math
 \begin{aligned} 
 & \frac{\partial }{\partial \theta_{j}} [L(\theta)+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})]\\ 
