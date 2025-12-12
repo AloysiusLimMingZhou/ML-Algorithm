@@ -32,7 +32,7 @@ The use of L2 Ridge Regularization is to reduce the chances of model from overfi
 The penalty helps the model to be more careful with loses as small difference in loss can result in large value of penalty.
 
 **Formula:**\
-$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}\_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}\_{k})$\
+$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}\_{i})+(1-y_{i})\cdot log(1-\hat{y}\_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}\_{k})$\
 **Where:**\
 $\theta$ = Weights with respect to Cost Function(loss)\
 n = Total rows of data\
