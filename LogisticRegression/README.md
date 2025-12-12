@@ -61,7 +61,11 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 \begin{aligned}
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}z_{i})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}\sum_{k=1}^{m}(x_{ik}\theta_{k}+b))\\ 
-&=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot 1)\\ 
+&=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot 1)\\
+\end{aligned}
+```
+```math
+\begin{aligned}
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}(1-g(z_{i}))+(1-y_{i})g(z_{i}))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}+y_{i}g(z_{i})+g(z_{i})-y_{i}g(z_{i}))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})\\ 
