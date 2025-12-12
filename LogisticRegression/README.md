@@ -58,13 +58,15 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 \end{aligned}
 ```
 ```math
-&=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}z_{i})\\ 
+\begin{aligned}
+& \frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}z_{i})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}\sum_{k=1}^{m}(x_{ik}\theta_{k}+b))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot 1)\\
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}(1-g(z_{i}))+(1-y_{i})g(z_{i}))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}+y_{i}g(z_{i})+g(z_{i})-y_{i}g(z_{i}))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})\\ 
-&=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})\\ 
+&=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})\\
+\end{aligned}
 ```
 
 **Derivative of Cost Function with respect to weights and Ridge L2 Regularisation:**\
@@ -78,16 +80,20 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 \end{aligned}
 ```
 ```math
-&=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}\cdot \frac{1}{g(z_{i})}+(1-y_{i})\cdot \frac{1}{1-g(z_{i})}\cdot \frac{\partial }{\partial \theta_{j}}g(z_{i}))+2\lambda\theta_{j}\\ 
+\begin{aligned}
+& \frac{1}{n}\sum_{i=1}^{n}(-y_{i}\cdot \frac{1}{g(z_{i})}+(1-y_{i})\cdot \frac{1}{1-g(z_{i})}\cdot \frac{\partial }{\partial \theta_{j}}g(z_{i}))+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial \theta_{j}}z_{i})+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial \theta_{j}}\sum_{k=1}^{m}(x_{ik}\theta_{k}+b))+2\lambda\theta_{j}\\
+\end{aligned}
 ```
 ```math
-&=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot x_{ij})+2\lambda\theta_{j}\\ 
+\begin{aligned}
+& \frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot x_{ij})+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}(1-g(z_{i}))+(1-y_{i})g(z_{i}))\cdot x_{ij})+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}+y_{i}g(z_{i})+g(z_{i})-y_{i}g(z_{i}))x_{ij}+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})x_{ij}+2\lambda\theta_{j}\\ 
-&=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})x_{ij}+2\lambda\theta_{j}\\ 
+&=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})x_{ij}+2\lambda\theta_{j}\\
+\end{aligned}
 ```
 
 **Where:**\
