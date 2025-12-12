@@ -32,13 +32,13 @@ The use of L2 Ridge Regularization is to reduce the chances of model from overfi
 The penalty helps the model to be more careful with loses as small difference in loss can result in large value of penalty.
 
 **Formula:**\
-$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$\
+$L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}\_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}\_{k})$\
 **Where:**\
 $\theta$ = Weights with respect to Cost Function(loss)\
 n = Total rows of data\
 log = Natural Logarithm\
 $y_{i}$ = Actual output for ith data row (0 or 1)\
-$\hat{y}_{i}$ = Predicted output for ith data row (0 or 1)\
+$\hat{y}\_{i}$ = Predicted output for ith data row (0 or 1)\
 $\lambda$ = L2 Ridge Regularization constant
 Penalty = $\lambda\sum_{i=1}^{n}(\theta^{2})$
 
@@ -101,11 +101,11 @@ $L(\theta)$ = Cost Function / Loss\
 $\theta_{j}$ = Weights for the jth column (from j to m of features)\
 n = Total rows of data (from i to n of data)\
 $y_{i}$ = Actual output for ith data row (0 or 1)\
-$\hat{y}_{i}$ = Predicted output for ith data row (0 or 1)\
-Derivative = $\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})$\
+$\hat{y}\_{i}$ = Predicted output for ith data row (0 or 1)\
+Derivative = $\frac{1}{n}\sum_{i=1}^{n}(\hat{y}\_{i}-y\_{i})$\
 $x_{ij}$ = Entire X_train or X_test (contains from i to n of total data and from j to m of total features)\
 $\lambda$ = L2 Ridge Regularization constant\
-Penalty = $\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$, where it takes the square of each weights from kth = 1 feature to mth feature
+Penalty = $\lambda\sum_{k=1}^{m}(\theta^{2}\_{k})$, where it takes the square of each weights from kth = 1 feature to mth feature
 
 **Update Weights and Bias Formula:**\
 **Weights:** $\theta_{j}=\theta_{j}-\alpha\frac{\partial }{\partial \theta_{j}}L(\theta)$\
