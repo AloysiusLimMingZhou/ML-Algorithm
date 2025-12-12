@@ -54,7 +54,11 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 &=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial b}(y_{i}\cdot log(\frac{1}{1+e^{-\sum_{k=1}^{m}(x_{ik}\theta_{k}+b)}})+(1-y_{i})\cdot log(1-\frac{1}{1+e^{-\sum_{k=1}^{m}(x_{ik}\theta_{k}+b)}}))+0)\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial b}(y_{i}\cdot log(\frac{1}{1+e^{-z_{i}}})+(1-y_{i})\cdot log(1-\frac{1}{1+e^{-z_{i}}})))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial b}(y_{i}\cdot log(g(z_{i}))+(1-y_{i})\cdot log(1-g(z_{i}))))\\ 
-&=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}\cdot \frac{1}{g(z_{i})}\cdot \frac{\partial }{\partial b}g(z_{i})+(1-y_{i})\cdot \frac{1}{1-g(z_{i})}\cdot \frac{\partial }{\partial b}g(z_{i}))\\ 
+&=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}\cdot \frac{1}{g(z_{i})}\cdot \frac{\partial }{\partial b}g(z_{i})+(1-y_{i})\cdot \frac{1}{1-g(z_{i})}\cdot \frac{\partial }{\partial b}g(z_{i}))\\
+\end{aligned}
+```
+```math
+\begin{aligned}
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}z_{i})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial b}\sum_{k=1}^{m}(x_{ik}\theta_{k}+b))\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}([-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})}]\cdot g(z_{i})(1-g(z_{i}))\cdot 1)\\ 
@@ -72,7 +76,11 @@ Thus, we have to find the derivative of our coss function, or loss, in order to 
 &=\frac{\partial }{\partial \theta_{j}}[(-\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot log(\hat{y}_{i})+(1-y_{i})\cdot log(1-\hat{y}_{i})))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})]\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial \theta_{j}}[y_{i}\cdot log(\frac{1}{1+e^{-\sum_{k=1}^{m}(x_{ik}\theta_{k}+b)}})+(1-y_{i})\cdot log(1-\frac{1}{1+e^{-\sum_{k=1}^{m}(x_{ik}\theta_{k}+b)}}))])+\frac{\partial }{\partial \theta_{j}}\lambda\sum_{k=1}^{m}(\theta^{2}_{k})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial \theta_{j}}[y_{i}\cdot log(\frac{1}{1+e^{-z_{i}}})+(1-y_{i})\cdot log(1-\frac{1}{1+e^{-z_{i}}}))])+\frac{\partial }{\partial \theta_{j}}\lambda\sum_{k=1}^{m}(\theta^{2}_{k})\\ 
-&=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial \theta_{j}}[y_{i}\cdot log(g(z_{i}))+(1-y_{i})\cdot log(1-g(z_{i}))])+\frac{\partial }{\partial \theta_{j}}\lambda\sum_{k=1}^{m}(\theta^{2}_{k})\\ 
+&=\frac{1}{n}\sum_{i=1}^{n}(-\frac{\partial }{\partial \theta_{j}}[y_{i}\cdot log(g(z_{i}))+(1-y_{i})\cdot log(1-g(z_{i}))])+\frac{\partial }{\partial \theta_{j}}\lambda\sum_{k=1}^{m}(\theta^{2}_{k})\\
+\end{aligned}
+```
+```math
+\begin{aligned}
 &=\frac{1}{n}\sum_{i=1}^{n}(-y_{i}\cdot \frac{1}{g(z_{i})}+(1-y_{i})\cdot \frac{1}{1-g(z_{i})}\cdot \frac{\partial }{\partial \theta_{j}}g(z_{i}))+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial \theta_{j}}z_{i})+2\lambda\theta_{j}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}((-y_{i}\frac{1}{g(z_{i})}+(1-y_{i})\frac{1}{1-g(z_{i})})\cdot g(z_{i})(1-g(z_{i}))\cdot \frac{\partial }{\partial \theta_{j}}\sum_{k=1}^{m}(x_{ik}\theta_{k}+b))+2\lambda\theta_{j}\\ 
