@@ -14,7 +14,7 @@ In this example(project), we'll be using house feature & prices dataset, and the
     - np.flatten() works by returning a new copy of array from the original array
     - np.flatten() will not override the original array, as it is a new independent array from the original one and they share different memory addresses
 
-# Formula Breakdown:\
+# Formula Breakdown:
 ```math
 y = \theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{n}x_{n} + b
 ```
@@ -65,6 +65,10 @@ $w_{i}$ = Weights for each feature (from 1 - m)\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|)\\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2})+\frac{\partial }{\partial \theta_{j}}(\lambda\sum_{i=1}^{m}|\theta_{i}|)\\
 & =\frac{1}{n}\sum_{i=1}^{n}\frac{\partial }{\partial \theta_{j}}(\hat{y_{i}}-y_{i})^{2}+\lambda\sum_{i=1}^{m}\frac{\partial }{\partial \theta_{j}}(|\theta_{i}|)\\
+\end{aligned}
+```
+```math
+\begin{aligned}
 & =\frac{1}{n}\sum_{i=1}^{n}\frac{\partial }{\partial \theta_{j}}((\hat{\theta_{i}x_{i}+b})-(\theta_{i}x_{i}+b))^{2}+\lambda\sum_{i=1}^{m}\frac{\partial }{\partial \theta_{j}}(|\theta_{i}|)\\
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot \frac{\partial }{\partial \theta_{j}}((\hat{\theta_{i}x_{i}+b})-(\theta_{i}x_{i}+b))+\lambda\\
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(x_{ij}+0))+\lambda\\
@@ -81,7 +85,7 @@ $\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
 $\hat{y}$ = Predicted value\
 y = Actual value\
 $\lambda$ = L1 constant\
-|$\theta_{i}$| = Absolute value of weight with index i (i from feature 0 to m)
+$|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)
 
 # Derivative of loss w.r.t Bias
 ```math
@@ -130,4 +134,5 @@ It is in short, the square root of the mean square error function we have explai
 $y_{i}$ = Actual value for ith index\
 $\hat{y}\_{i}$ = Predicted value for ith index\
 $\bar{y}\_{i}$ = Mean of the actual value
+
 
