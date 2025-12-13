@@ -53,7 +53,7 @@ $\lambda$ = l1 penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
 $w_{i}$ = Weights for each feature (from 1 - m)
 
-**Combining L1 (Lasso) Regularisation with MSE:**\
+**Combining L1 (Lasso) Regularisation with MSE:**
 ```math
 \frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|
 ```
@@ -134,6 +134,7 @@ It is in short, the square root of the mean square error function we have explai
 $y_{i}$ = Actual value for ith index\
 $\hat{y}\_{i}$ = Predicted value for ith index\
 $\bar{y}\_{i}$ = Mean of the actual value
+
 
 
 
