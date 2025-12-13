@@ -25,12 +25,12 @@ $\theta_{n}$ = Weights for each feature (1-n)\
 b = Bias
 
 # Loss Formula: Mean Square Error
-**Explanation:**\
+**Explanation:**
 - In continuous regression model, we'll be using Mean Square Error (MSE), as it takes the square of the difference between actual value and predicted value.
 - This means if the difference (loss) is high, the penalty will be higher as the value is squared.
 - Additionally, we have divided the total loss with the total number of dataset (n) to calculate the average loss. This is to prevent gradient exploding due to large loss value.
 
-**Formula:**\
+**Formula:**
 ```math
 \frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}
 ```
@@ -44,14 +44,14 @@ y = Actual value
 - In order to reduce the risk of overfitting, where our model memorise the data during training and under-perform during testing, we will be implement regularisation as well, which is L1 (Lasso)
 - The purpose of L1 (Lasso) Regularisation is to add a penalty into the model, where a small difference in loss is further amplified into a huge value, on top on our loss function
 
-**Formula:**\
+**Formula:**
 ```math
 \lambda\sum_{i=1}^{m}|\theta_{i}|
 ```
 **Where:**\
 $\lambda$ = l1 penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
-$w_{i}$ = Weights for each feature (from 1 - m)\
+$w_{i}$ = Weights for each feature (from 1 - m)
 
 **Combining L1 (Lasso) Regularisation with MSE:**\
 ```math
@@ -110,7 +110,7 @@ $\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
 $\hat{y}$ = Predicted value\
 y = Actual value\
 $\lambda$ = L1 constant\
-|$\theta_{i}$| = Absolute value of weight with index i (i from feature 0 to m)\
+$|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)
 
 # Root Mean Square Error:
 It is in short, the square root of the mean square error function we have explained earlier:\
@@ -134,5 +134,6 @@ It is in short, the square root of the mean square error function we have explai
 $y_{i}$ = Actual value for ith index\
 $\hat{y}\_{i}$ = Predicted value for ith index\
 $\bar{y}\_{i}$ = Mean of the actual value
+
 
 
