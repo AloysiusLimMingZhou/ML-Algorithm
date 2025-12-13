@@ -3,7 +3,7 @@
 In this example(project), we'll be using house feature & prices dataset, and the formula for linear regression
 
 **Additional notes**\
-    Difference between ravel and flatten in numpy\
+    Difference between ravel and flatten in numpy
     The difference between np.ravel() and np.flatten() lies in how its memory works and its impact towards original array
 
     1. np.ravel()
@@ -14,10 +14,10 @@ In this example(project), we'll be using house feature & prices dataset, and the
     - np.flatten() works by returning a new copy of array from the original array
     - np.flatten() will not override the original array, as it is a new independent array from the original one and they share different memory addresses
 
-# Formula Breakdown:
-$$
+# Formula Breakdown:\
+```math
 y = \theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{n}x_{n} + b
-$$
+```
 **Where:**\
 y = Actual value\
 x = Value for each feature\
@@ -31,9 +31,9 @@ b = Bias
 - Additionally, we have divided the total loss with the total number of dataset (n) to calculate the average loss. This is to prevent gradient exploding due to large loss value.
 
 **Formula:**\
-$$
+```math
 \frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}
-$$
+```
 **Where:**\
 n = Number of total rows (Total dataset count)\
 $\hat{y}$ = Predicted value\
@@ -45,21 +45,21 @@ y = Actual value
 - The purpose of L1 (Lasso) Regularisation is to add a penalty into the model, where a small difference in loss is further amplified into a huge value, on top on our loss function
 
 **Formula:**\
-$$
+```math
 \lambda\sum_{i=1}^{m}|\theta_{i}|
-$$
+```
 **Where:**\
 $\lambda$ = l1 penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
 $w_{i}$ = Weights for each feature (from 1 - m)\
 
 **Combining L1 (Lasso) Regularisation with MSE:**\
-$$
+```math
 \frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|
-$$
+```
 
 # Derivative of loss w.r.t Weights
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}L(\theta)\\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|)\\
@@ -70,7 +70,7 @@ $$
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(x_{ij}+0))+\lambda\\
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})x_{ij}+\lambda
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Loss function\
@@ -84,7 +84,7 @@ $\lambda$ = L1 constant\
 |$\theta_{i}$| = Absolute value of weight with index i (i from feature 0 to m)
 
 # Derivative of loss w.r.t Bias
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial b}L(\theta)\\
 & =\frac{\partial }{\partial b}(\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|)\\
@@ -95,7 +95,7 @@ $$
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(0+0))\\
 & =\frac{2}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Loss function\
@@ -112,7 +112,9 @@ $\lambda$ = L1 constant\
 It is in short, the square root of the mean square error function we have explained earlier:\
 
 **Formula:**
-$$\sqrt{\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})^{2}}$$
+```math
+\sqrt{\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})^{2}}
+```
 
 # R-Square Formula
 - It is used to calculate how well our linear regression model fits with the dataset. Think of it as an accuracy score for Linear Regression itself.
@@ -120,9 +122,12 @@ $$\sqrt{\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})^{2}}$$
 - In R-Square score, it ranges from 0 to 1 where 0 indicates the model is just random guessing while 1 is a perfect fit. The lower the loss value, the higher the R-Square value.
 
 **Formula:**
-$$1 - \frac{\sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2}}{\sum_{i=1}^{n}(y_{i}-\bar{y}_{i})^{2}}$$
+```math
+1 - \frac{\sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2}}{\sum_{i=1}^{n}(y_{i}-\bar{y}_{i})^{2}}
+```
 
 **Where:**\
 $y_{i}$ = Actual value for ith index\
-$\hat{y}_{i}$ = Predicted value for ith index\
-$\bar{y}_{i}$ = Mean of the actual value
+$\hat{y}\_{i}$ = Predicted value for ith index\
+$\bar{y}\_{i}$ = Mean of the actual value
+
