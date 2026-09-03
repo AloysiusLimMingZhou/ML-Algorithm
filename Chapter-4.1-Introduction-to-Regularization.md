@@ -21,7 +21,7 @@
 
 **Prerequisite Notes:**
 - Coefficients: Weights of the features
-- Coefficients Variance: The variability between the weights of the features. Refer to `Chapter 1.2: Advanced topics in Linear Regression`, when the features are highly correlated with each other, it causes numerical instability in OLS inverse matrix $(X^TX)^{-1}$ due to high eigenvalues, which result in exploding coefficient variance
+- Coefficients Variance: The variability between the weights of the features. Refer to `Chapter 1.2: Advanced topics in Linear Regression`, when the features are highly correlated with each other, it causes numerical instability in OLS inverse matrix $`(X^TX)^{-1}`$ due to high eigenvalues, which result in exploding coefficient variance
 
 In machine learning, there are 3 main regularization algorithms used to enhance the model performance:
 1. `L1 Lasso Regularization (Lasso Regression)`
@@ -58,22 +58,22 @@ In machine learning, there are 3 main regularization algorithms used to enhance 
 \lambda\sum_{i=1}^{m}|\theta_{i}|
 ```
 **Where:**\
-$\lambda$ = Regularization penalty constant (recommended: 0.0001)\
+$`\lambda`$ = Regularization penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
-$|\theta_{i}|$ = Absolute value of weights for each feature (from 1 - m)
+$`|\theta_{i}|`$ = Absolute value of weights for each feature (from 1 - m)
 
 **Formula (Matrix):**\
 ```math
 \lambda||\theta||_1
 ```
 **Where:**\
-$\lambda$ = Regularization penalty constant (recommended: 0.0001)\
-$||\theta||_1$ = L1 Norm of the absolute value of weights matrix (Shape: m, 1)
+$`\lambda`$ = Regularization penalty constant (recommended: 0.0001)\
+$`||\theta||_1`$ = L1 Norm of the absolute value of weights matrix (Shape: m, 1)
 
 - In short, Lasso Regularization imposes a penalty which is the sum of the absolute values of all weights
 - The goal of `L1 Lasso Regularization` is that it helps removes unnecessary features from the Machine Learning model. We will be explaining that in detail below
 - By taking Linear Regression as a simple example, L1 Regularization is added into the loss function, `Mean Square Error` in the model.
-- Additionally, the $\lambda$ here is the regularization hyperparameter constant. Hyperparameter simply refers to the constants/parameters that are can be tuned/adjusted. The regularization hyperparameter is used to determine the scale of penalty imposed to the coefficients. In practical use case its optimum value is usually 0.0001.
+- Additionally, the $`\lambda`$ here is the regularization hyperparameter constant. Hyperparameter simply refers to the constants/parameters that are can be tuned/adjusted. The regularization hyperparameter is used to determine the scale of penalty imposed to the coefficients. In practical use case its optimum value is usually 0.0001.
 
 **Recap of Mean Square Error Formula:**
 ```math
@@ -84,15 +84,15 @@ $||\theta||_1$ = L1 Norm of the absolute value of weights matrix (Shape: m, 1)
 ```
 **Where:**\
 n = Number of total rows (Total dataset count)\
-$\hat{y_i}$ = Predicted value of the ith data sample\
-$y_i$ = Actual value of the ith data sample
-$\hat{y}$ = Predicted value in matrix form, $X\theta$, with shape of (n, 1)\
+$`\hat{y_i}`$ = Predicted value of the ith data sample\
+$`y_i`$ = Actual value of the ith data sample
+$`\hat{y}`$ = Predicted value in matrix form, $`X\theta`$, with shape of (n, 1)\
 y = Actual value in matrix form with shape of (n, 1)\
-$||y-\hat{y}||^2_2$ = L2 Norm of the MSE
+$`||y-\hat{y}||^2_2`$ = L2 Norm of the MSE
 
 **Explanation of L1 and L2 Norm in Vector**
 - As you might know, vectors refer to matrix that are 2-dimensional, i.e. (n, 1) or (m, 1) shape, where there's only 1 column
-- Thus, in vectorized variables like y, $\theta$, and $y-\hat{y}$ where all of them are in 2-dimension, we tend to use vector notation to indicate that they are vectors
+- Thus, in vectorized variables like y, $`\theta`$, and $`y-\hat{y}`$ where all of them are in 2-dimension, we tend to use vector notation to indicate that they are vectors
 - So when we do summation of vectors, there are 2 methods to do so, which are L1 and L2 Norm.
 
 **L1 Norm (Manhattan Norm):**
@@ -133,7 +133,7 @@ $||y-\hat{y}||^2_2$ = L2 Norm of the MSE
 
 Do not be confused between L1 and L2 Norm with L1 Lasso and L2 Ridge. L1 and L2 Norm represents the vector notation, while L1 Lasso and L2 Ridge represents the Regularization Techniques. Both are completely different topics so be aware.
 
-**Additional Notes:** We use $\frac{1}{2n}$ instead of $\frac{1}{n}$ in `Mean Square Error(MSE)` as it helps to counter out the 2 from the power rule derivation of square later on.
+**Additional Notes:** We use $`\frac{1}{2n}`$ instead of $`\frac{1}{n}`$ in `Mean Square Error(MSE)` as it helps to counter out the 2 from the power rule derivation of square later on.
 
 **Addition of L1 Lasso Regularization into MSE:**
 ```math
@@ -143,10 +143,10 @@ Do not be confused between L1 and L2 Norm with L1 Lasso and L2 Ridge. L1 and L2 
 \end{aligned}
 ```
 **Where:**\
-$\frac{1}{2n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})^{2}$: Mean Square Error (MSE) function\
-$\lambda\sum_{i=1}^{m}|\theta_{i}|$: L1 Lasso Penalty
+$`\frac{1}{2n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})^{2}`$: Mean Square Error (MSE) function\
+$`\lambda\sum_{i=1}^{m}|\theta_{i}|`$: L1 Lasso Penalty
 
-- Note that in `L1 Lasso Regularization`, we do not impose $\frac{\lambda}{2}$ like in `L2 Ridge Regularization`, as it does not have any power rule derivation multiplication in it, which makes it unnecessary. To visualize:
+- Note that in `L1 Lasso Regularization`, we do not impose $`\frac{\lambda}{2}`$ like in `L2 Ridge Regularization`, as it does not have any power rule derivation multiplication in it, which makes it unnecessary. To visualize:
 ```math
 \frac{\partial }{\partial \theta_j}(\frac{\lambda}{2}\sum_{i=1}^{n}(\theta_i)^2) =\lambda\theta_j, \text{The power 2 cancels out the denominator 2, making it more aesthetic}
 ```
@@ -167,12 +167,12 @@ Now let's move on to deriving it for gradient descent later on:
 \end{aligned}
 ```
 **Where:**\
-$\lambda$: Regularisation penalty constant\
-$\theta_{j}$: Weights at the jth feature\
-sign($\theta_j$) = -1 when $\theta_j < 0$\
-sign($\theta_j$) = 1 when $\theta_j > 0$\
-sign($\theta_j$) $\in$ [-1, 1] when $\theta_j = 0$\
-$\lambda{\partial }(|\theta_j|)$: Sub-gradient of $\theta_j$
+$`\lambda`$: Regularisation penalty constant\
+$`\theta_{j}`$: Weights at the jth feature\
+sign($`\theta_j`$) = -1 when $`\theta_j < 0`$\
+sign($`\theta_j`$) = 1 when $`\theta_j > 0`$\
+sign($`\theta_j`$) $`\in`$ [-1, 1] when $`\theta_j = 0`$\
+$`\lambda{\partial }(|\theta_j|)`$: Sub-gradient of $`\theta_j`$
 
 **Derivative of L1 Lasso Regularization (Matrix Form):**\
 ```math
@@ -185,8 +185,8 @@ $\lambda{\partial }(|\theta_j|)$: Sub-gradient of $\theta_j$
 \end{aligned}
 ```
 
-- In this scenario, ${\partial }(|\theta_j|)$ is equivalent to sign($\theta$), where the result is 1 when weight($\theta$) is > 0, and -1 when weight($\theta$) is < 0.
-- If the weight($\theta$) = 0, the result can be any value within [-1, 1] interval. We will fully explain this as below but for now you may simplify the result to be 0, but note that it is not as simple as that.
+- In this scenario, $`{\partial }(|\theta_j|)`$ is equivalent to sign($`\theta`$), where the result is 1 when weight($`\theta`$) is > 0, and -1 when weight($`\theta`$) is < 0.
+- If the weight($`\theta`$) = 0, the result can be any value within [-1, 1] interval. We will fully explain this as below but for now you may simplify the result to be 0, but note that it is not as simple as that.
 
 **Combining both gradient of MSE Loss and L1 Regularization:**\
 **Summation Form:**
@@ -200,10 +200,10 @@ $\lambda{\partial }(|\theta_j|)$: Sub-gradient of $\theta_j$
 \end{aligned}
 ```
 **Where:**\
-$\theta_j:$ Weights for jth feature\
-$\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})x_{ij}$: Gradient of MSE\
-$\lambda\cdot \text{sign}(\theta_{j})$: Gradient of L1 Lasso Regularization\
-$\lambda$: Regularization penalty constant\
+$`\theta_j:`$ Weights for jth feature\
+$`\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})x_{ij}`$: Gradient of MSE\
+$`\lambda\cdot \text{sign}(\theta_{j})`$: Gradient of L1 Lasso Regularization\
+$`\lambda`$: Regularization penalty constant\
 
 **Matrix Form:**
 ```math
@@ -218,7 +218,7 @@ $\lambda$: Regularization penalty constant\
 
 # b) L2 Ridge Regularization (Ridge Regression)
 **Goal of L2 Ridge Regularization:**
-- L2 Ridge Regularization helps shrink the weights value for each coefficient by imposing its penalty, which is $\lambda\sum_{i=1}^{m}\theta^2_i$.
+- L2 Ridge Regularization helps shrink the weights value for each coefficient by imposing its penalty, which is $`\lambda\sum_{i=1}^{m}\theta^2_i`$.
 - In L2 Ridge, its penalty takes in the sum of weights squared. This causes the penalty to be larger and imposes a larger shrink in coefficient values.
 - As a result, it is effective in shrinking and smoothing the coefficients value, which result in reducing multicollinearity effect.
 - However, L2 Ridge does not perform feature selection, sparsity unlike L1 Lasso. This is because L2 Ridge only shrinks the weights value close to 0, but not exactly 0.
@@ -232,9 +232,9 @@ $\lambda$: Regularization penalty constant\
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
+$`\lambda`$ = Regularisation penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
-$\theta_{j}$ = Weights for each feature (from 1 - m)
+$`\theta_{j}`$ = Weights for each feature (from 1 - m)
 
 **Formula (Matrix Form):**\
 ```math
@@ -262,8 +262,8 @@ $\theta_{j}$ = Weights for each feature (from 1 - m)
 ```
 
 **Where:**\
-$\lambda$ = Regularization penalty constant\
-$\theta_{j}$ = Weights at the jth feature
+$`\lambda`$ = Regularization penalty constant\
+$`\theta_{j}`$ = Weights at the jth feature
 
 **L2 Ridge Regularization gradient (Matrix Form)**:
 ```math
@@ -284,9 +284,9 @@ $\theta_{j}$ = Weights at the jth feature
 \end{aligned}
 ```
 **Where:**\
-$\theta_j:$ Weights for jth feature\
-$\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})x_{ij}$: Gradient of MSE\
-$\lambda$: Regularization penalty constant
+$`\theta_j:`$ Weights for jth feature\
+$`\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})x_{ij}`$: Gradient of MSE\
+$`\lambda`$: Regularization penalty constant
 
 **Matrix Form**
 ```math
@@ -301,10 +301,10 @@ $\lambda$: Regularization penalty constant
 Let's assume we have a house dataset with 3 features, which are size, number of bedrooms and number of bathrooms, and y output as price.
 
 **Weights value for each feature:**
-- $\theta_1$, Size: 4 
-- $\theta_2$, Number of bedrooms: 2
-- $\theta_3$, Number of bathrooms: 3
-- $\lambda$, Hyperparameter: 0.0001
+- $`\theta_1`$, Size: 4
+- $`\theta_2`$, Number of bedrooms: 2
+- $`\theta_3`$, Number of bathrooms: 3
+- $`\lambda`$, Hyperparameter: 0.0001
 
 Ridge, L2 Penalty: 
 ```math
@@ -318,9 +318,9 @@ Ridge, L2 Penalty:
 ```
 
 **Weights value after penalty:**
-- $\theta_1$, Size: 3.9971
-- $\theta_2$, Number of bedrooms: 1.9971
-- $\theta_3$, Number of bathrooms: 2.9971
+- $`\theta_1`$, Size: 3.9971
+- $`\theta_2`$, Number of bedrooms: 1.9971
+- $`\theta_3`$, Number of bathrooms: 2.9971
 This shows that Ridge helps shrink the weights of each features, but not entirely to 0.
 
 # c) Elastic Net Regularization (L1 + L2)
@@ -336,10 +336,10 @@ This shows that Ridge helps shrink the weights of each features, but not entirel
 \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})
 ```
 **Where:**\
-$\lambda$ = Regularization penalty constant (recommended: 0.0001)\
-$\alpha$ = Alpha constant to control L1 and L2 penalty (recommended: 0.05)\
+$`\lambda`$ = Regularization penalty constant (recommended: 0.0001)\
+$`\alpha`$ = Alpha constant to control L1 and L2 penalty (recommended: 0.05)\
 m = Number of total columns (Total features in a dataset)\
-$\theta_{i}$ = Weights for each feature (from 1 - m)
+$`\theta_{i}`$ = Weights for each feature (from 1 - m)
 
 **Formula (Matrix Form)**
 ```math
@@ -347,7 +347,7 @@ $\theta_{i}$ = Weights for each feature (from 1 - m)
 ```
 
 - As you can see, in Elastic Net Regularization, it implements both the `weight absolute value penalty` from L1 Lasso and the `weight square penalty` from L2 Ridge.
-- Furthermore, it introduces a new constant, which is $\alpha$. Alpha here is used to act as a **controller** to adjust the ratio of L1 and L2 mixing.
+- Furthermore, it introduces a new constant, which is $`\alpha`$. Alpha here is used to act as a **controller** to adjust the ratio of L1 and L2 mixing.
 - For example, if alpha is 0.4, L1 ratio will be 0.4, whereas L2 ratio will be (1-0.4)=0.6.
 
 **Combining Elastic Net Regularization with MSE:**
@@ -371,12 +371,12 @@ $\theta_{i}$ = Weights for each feature (from 1 - m)
 \end{aligned}
 ```
 **Where:**\
-$\lambda$ = Regularization penalty constant\
-$\alpha$ = Mixing Ratio for L1 and L2\
-$\theta_{j}$ = Weights at the jth feature\
-sign($\theta_j$) = -1 when $\theta_j < 0$\
-sign($\theta_j$) = 1 when $\theta_j > 0$\
-sign($\theta_j$) $\in$ [-1, 1] when $\theta_j = 0$
+$`\lambda`$ = Regularization penalty constant\
+$`\alpha`$ = Mixing Ratio for L1 and L2\
+$`\theta_{j}`$ = Weights at the jth feature\
+sign($`\theta_j`$) = -1 when $`\theta_j < 0`$\
+sign($`\theta_j`$) = 1 when $`\theta_j > 0`$\
+sign($`\theta_j`$) $`\in`$ [-1, 1] when $`\theta_j = 0`$
 
 **Elastic Net Regularization Gradient (Matrix Form):**
 ```math
@@ -413,11 +413,11 @@ sign($\theta_j$) $\in$ [-1, 1] when $\theta_j = 0$
 Let's assume we have a house dataset with 3 features, which are size, number of bedrooms and number of bathrooms, and y output as price.\
 
 **Weights value for each feature:**
-- $\theta_1$, Size: 4 
-- $\theta_2$, Number of bedrooms: 2
-- $\theta_3$, Number of bathrooms: 3
-- $\lambda$, Hyperparameter: 0.0001
-- $\alpha$, Hyperparameter: 0.3
+- $`\theta_1`$, Size: 4
+- $`\theta_2`$, Number of bedrooms: 2
+- $`\theta_3`$, Number of bathrooms: 3
+- $`\lambda`$, Hyperparameter: 0.0001
+- $`\alpha`$, Hyperparameter: 0.3
 
 Elastic Net Penalty:
 ```math
@@ -429,9 +429,9 @@ Elastic Net Penalty:
 \end{aligned}
 ```
 **Weights value after penalty:**
-- $\theta_1$, Size: **3.99788**
-- $\theta_2$, Number of bedrooms: **1.99788**
-- $\theta_3$, Number of bathrooms: **2.99788**
+- $`\theta_1`$, Size: **3.99788**
+- $`\theta_2`$, Number of bedrooms: **1.99788**
+- $`\theta_3`$, Number of bathrooms: **2.99788**
 
 This shows that Ridge helps shrink the weights of each feature, while at the same time making some weights to 0 if necessary.
 
@@ -439,7 +439,7 @@ This shows that Ridge helps shrink the weights of each feature, while at the sam
 **Any drawbacks on Elastic Net Regularization?**
 - Many might think if elastic net solves both L1 and L2 issues by combining their advantages together, why not we always use Elastic Net instead?
 - While this is true that Elastic Net does outperform L1 and L2 at most times, here are the only caveats for using it:
-1. `Extra hyperparameter tuning`: In `L1` and `L2` there are only 1 hyperparameter, which is the $\lambda$ penalty constant which is to adjust the amount of penalty imposed to the coefficients. However, in `Elastic Net`, there are 2 hyperparameters, which are $\lambda$ for controlling penalty, and $\alpha$ for adjusting the L1/L2 ratio.\
+1. `Extra hyperparameter tuning`: In `L1` and `L2` there are only 1 hyperparameter, which is the $`\lambda`$ penalty constant which is to adjust the amount of penalty imposed to the coefficients. However, in `Elastic Net`, there are 2 hyperparameters, which are $`\lambda`$ for controlling penalty, and $`\alpha`$ for adjusting the L1/L2 ratio.\
 By having an extra hyperparameter, it causes extra time and complexity in adjusting it, considering the number of combinations. This is notable in `cross-validation`, where having an extra hyperparameter will increase its computational power requirement.
 2. `Confident on which regularization to use`: In some situations, you might already be sure of which regularization techniques to use. In that case there is no need to `combine` L1 and L2 like in Elastic since you've the answer and is willing to take the drawbacks as well.\
 **For example**, in a housing dataset where it has too many features making it complex, you will directly use L1 Lasso for sparsity as that is your main goal. Coefficient shrinking comes next to your concern.
@@ -450,10 +450,10 @@ By having an extra hyperparameter, it causes extra time and complexity in adjust
 | Aspect               | L1 Lasso                                                                                           | L2 Ridge                                                                                                                                           | Elastic Net                                                                                                                                                                           |
 |----------------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Primary function     | Primary goal is to achieve sparsity by selecting and removing features, which simplifies the model | Primary goal is to shrink the coefficients(weights) values for reducing multicollinearity impact                                                   | Combine both Feature Selection and Coefficient shrinking from L1 Lasso and L2 Ridge                                                                                                   |
-| Penalty Formula      | Its penalty is the sum of absolute value of weights, $\lambda\sum_{i=1}^{m}\|\theta_i\|$           | Its penalty is the sum of squared weights, $\lambda\sum_{i=1}^{m}\theta^2_i$                                                                       | Combine both penalty of L1 and L2 together, and use an $\alpha$ hyperparameter to adjust their ratio, $\lambda(\alpha\sum_{i=1}^{m}\|\theta_i \|+(1-\alpha)\sum_{i=1}^{m}\theta^2_i)$ |
+| Penalty Formula      | Its penalty is the sum of absolute value of weights, $`\lambda\sum_{i=1}^{m}\|\theta_i\|`$           | Its penalty is the sum of squared weights, $`\lambda\sum_{i=1}^{m}\theta^2_i`$                                                                       | Combine both penalty of L1 and L2 together, and use an $`\alpha`$ hyperparameter to adjust their ratio, $`\lambda(\alpha\sum_{i=1}^{m}\|\theta_i \|+(1-\alpha)\sum_{i=1}^{m}\theta^2_i)`$ |
 | Coefficient Effects  | It helps reduce the value of coefficients to exactly 0                                             | It helps shrink the value of coefficients to nearly 0, but not exactly 0                                                                           | For some irrelevant coefficients it reduces it to exactly 0, and others shrink it to nearly 0                                                                                         |
 | Use Case             | It is used when the model is too complex and in need of filtering out some features                | It is used when the coefficients in the model is highly correlated of each other, causing numerical instability and coefficient variance explosion | It can be used in both scenarios/or when both problems are encountered at the same time                                                                                               |
-| Hyperparameters used | $\lambda$ for adjusting the scale of penalty imposed to the coefficients                           | $\lambda$ for adjusting the scale of penalty imposed to the coefficients                                                                           | $\lambda$ for adjusting the scale of penalty imposed to the coefficients, and $\alpha$ for adjusting L1 and L2 ratio                                                                  |
+| Hyperparameters used | $`\lambda`$ for adjusting the scale of penalty imposed to the coefficients                           | $`\lambda`$ for adjusting the scale of penalty imposed to the coefficients                                                                           | $`\lambda`$ for adjusting the scale of penalty imposed to the coefficients, and $`\alpha`$ for adjusting L1 and L2 ratio                                                                  |
 
 
 # Reference:

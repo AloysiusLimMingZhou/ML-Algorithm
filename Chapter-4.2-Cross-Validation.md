@@ -37,8 +37,8 @@
 - In LOOCV, it works by splitting the dataset into 2 parts, which is the training data and testing data. However, unlike simple train_test_split, it only includes 1 data sample in the dataset as testing data.
 - To illustrate, assume we have a total of n data samples in a dataset, the model will be trained on the (n-1) training data, and then it will be tested on a single data sample to output a prediction. The model will not be known of the test data sample during the training phase
 - However, to make it even further, we will be repeating this data split for n amount of times, where each data samples will become a single testing data for the model to predict per data split iteration cycle.
-- For example, for the first data split we will set $(x_1, y_1)$ as the test data, while $[(x_2, y_2), (x_3, y_3),...,(x_n-y_n)]$ will be the training data. On the 2nd data split, $(x_2, y_2)$ will be the test data, while $[(x_1, y_1), (x_3, y_3),...,(x_n-y_n)]$ will be the training data.
-- This iteration of data splitting cycle will continue until we set the final data sample as test data, where $(x_n, y_n)$ as test data, while $[(x_1, y_1), (x_2, y_2),...,(x_{n-1}-y_{n-1})]$ as training data
+- For example, for the first data split we will set $`(x_1, y_1)`$ as the test data, while $`[(x_2, y_2), (x_3, y_3),...,(x_n-y_n)]`$ will be the training data. On the 2nd data split, $`(x_2, y_2)`$ will be the test data, while $`[(x_1, y_1), (x_3, y_3),...,(x_n-y_n)]`$ will be the training data.
+- This iteration of data splitting cycle will continue until we set the final data sample as test data, where $`(x_n, y_n)`$ as test data, while $`[(x_1, y_1), (x_2, y_2),...,(x_{n-1}-y_{n-1})]`$ as training data
 - In short, we will be splitting a n amount of data samples into (n-1) training data and 1 testing data, and repeat this iteration for n times until each data sample become the test data for each data split. 
 ![LOOCV Visualization](RegularizationImage/LOOCVMethod.png)
 LOOCV Visualisation Image from `An Introduction to Statistical Learning in Python`
@@ -53,8 +53,8 @@ LOOCV Visualisation Image from `An Introduction to Statistical Learning in Pytho
 
 **Where:**\
 n: Total Amount of data samples in a dataset\
-$(y-\hat{y_i}^{-i})^2$: MSE (No division by total dataset average as we predict on a single data sample)\
-$\hat{y_i}^{-i}$: Prediction for a single data sample $x_i$ using model trained in training dataset excluding i-th sample (For each iteration from i=1 to i=n, we set i as testing dataset and the remainders as training dataset. Thus why we exclude i from training dataset)
+$`(y-\hat{y_i}^{-i})^2`$: MSE (No division by total dataset average as we predict on a single data sample)\
+$`\hat{y_i}^{-i}`$: Prediction for a single data sample $`x_i`$ using model trained in training dataset excluding i-th sample (For each iteration from i=1 to i=n, we set i as testing dataset and the remainders as training dataset. Thus why we exclude i from training dataset)
 
 **Additional Notes:** During the LOOCV, the test data will not be visible by the model during training as it is splitted. However LOOCV does not protect against duplicated data samples as this might cause training and testing data to have the same value (i.e: A 157cm 47kg 23-year-old Male appearing both in training and testing dataset), and this will still cause data leakage and affect model integrity
 
@@ -88,10 +88,10 @@ Reference: Zitao's Web (3 min of Machine Learning: Cross Validation)
 **Where:**\
 k: Total amount of folds divided in a dataset\
 n: Total Amount of data samples in a dataset\
-$D_i$: i-th fold for testing dataset\
-$|D_i|$: Total number of data samples in a single fold, $\frac{n}{k}$\
+$`D_i`$: i-th fold for testing dataset\
+$`|D_i|`$: Total number of data samples in a single fold, $`\frac{n}{k}`$\
 j: Each data sample in the dataset, j=1,...,n\
-$\sum_{j\in D_i}$: Each data sample found in a single fold, $D_i$ (A single group(fold) can have multiple data samples)
+$`\sum_{j\in D_i}`$: Each data sample found in a single fold, $`D_i`$ (A single group(fold) can have multiple data samples)
 
 **Why K-Fold Cross Validation**
 - `Low Bias`: Similar to LOOCV, k-fold cross validation also provides lower bias than simple train_test_split due to it using less testing dataset by dividing it into k number of folds, unlike train_test_split that split the dataset into 50/50 or 70/30. The higher the folds, k, the lower the bias. However, its bias is still higher than LOOCV due to it having more testing dataset which will be explained later on.
@@ -106,7 +106,7 @@ In short, k-fold CV is a hybrid of both LOOCV and simple train_test_split, where
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Bias                  | Lower Bias due to allowing more data samples in training by using less in testing, keeping the dataset complexity and avoid underfitting                                       | Slightly higher Bias due to slightly fewer data samples in training by allowing more in testing                                                                                                   |
 | Variance              | Higher Variance due to a single testing data, which results in higher fluctuations of loss and prediction per iteration, especially with outliers                              | Slightly lower Variance due to using more data samples for testing, which avoid the model to be bias of a single outlier during testing and ensure the loss will be more averaged per iteration   |
-| Computational Power   | Higher computational cost due to larger amount of iterations as it loops through each data sample and set it to a single test data, leading to O($n^2$) complexity cost        | Slightly lower computational cost due to it loops through a group(fold) of data samples and set them as a group of testing data, leading to O(n*k) complexity cost                                |
+| Computational Power   | Higher computational cost due to larger amount of iterations as it loops through each data sample and set it to a single test data, leading to O($`n^2`$) complexity cost        | Slightly lower computational cost due to it loops through a group(fold) of data samples and set them as a group of testing data, leading to O(n*k) complexity cost                                |
 
 - Thus, as you can see, k-fold cross validation is more well-balanced in terms of the bias and variance, making it less susceptible to outliers than LOOCV due to lower variance. Even though it has a slight bias than LOOCV but the difference is almost negligible in practice and the decrease in variance by increasing bias is more valuable in this case. 
 - Lastly, its slightly lower computational cost is key here as it is able to ensure the Machine Learning Model is able to run under lower cost and higher speed.
@@ -133,15 +133,15 @@ Testing dataset: 0 Class 0, 20 Class 1
 - For example, using the same 80/20 train_test_split and dataset, by applying stratify,
 
 Simple 80/20 train_test_split (Stratify):\
-Training dataset: $80\cdot \frac{80}{100}=64$ Class 0, $20\cdot \frac{80}{100}=16$ Class 1\
-Testing dataset: $80\cdot \frac{20}{100}=16$ Class 0, $20\cdot \frac{20}{100}=4$ Class 1
+Training dataset: $`80\cdot \frac{80}{100}=64`$ Class 0, $`20\cdot \frac{80}{100}=16`$ Class 1\
+Testing dataset: $`80\cdot \frac{20}{100}=16`$ Class 0, $`20\cdot \frac{20}{100}=4`$ Class 1
 - To further explain, since we split our dataset into 80% training and 20% testing, we will also split the same proportion for our class as well, which is 80% of class 0 and 1 in training dataset, while 20% of class 0 and 1 in testing dataset
 - As a result, it ensures fair and balanced data class sample distribution across training and testing dataset
 - By applying stratify into K-Fold cross validation, the example process is as below:
 1. We split the dataset into 10 folds, where 1 fold will be used as validation fold, and the remaining 9 folds will be used as training fold
 2. Then, we divide the data class samples so that it is evenly distributed across training and testing dataset (90/10 split)\
-   Training dataset: $80\cdot \frac{90}{100}=72$ Class 0, $20\cdot \frac{90}{100}=18$ Class 1\
-   Testing dataset: $80\cdot \frac{10}{100}=8$ Class 0, $20\cdot \frac{10}{100}=2$ Class 1
+   Training dataset: $`80\cdot \frac{90}{100}=72`$ Class 0, $`20\cdot \frac{90}{100}=18`$ Class 1\
+   Testing dataset: $`80\cdot \frac{10}{100}=8`$ Class 0, $`20\cdot \frac{10}{100}=2`$ Class 1
 3. As you can see, for each fold we have 8 data samples for Class 0, and 2 data samples for Class 1. This matches the proportion of the dataset, which is 80% of Class 0 and 20% of Class 1
 4. Since in our training dataset we have 9 folds, we will have 72 Class 0 and 18 Class 1. On the other hand, in our testing dataset we have 1 fold, we will have 8 Class 0 and 2 Class 1
 

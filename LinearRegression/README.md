@@ -38,7 +38,7 @@ y = \theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{n}x_{n} + b
 **Where:**\
 y = Actual value\
 x = Value for each feature\
-$\theta_{n}$ = Weights for each feature (1-n)\
+$`\theta_{n}`$ = Weights for each feature (1-n)\
 b = Bias
 
 # Loss Formula: Mean Square Error
@@ -53,7 +53,7 @@ b = Bias
 ```
 **Where:**\
 n = Number of total rows (Total dataset count)\
-$\hat{y}$ = Predicted value\
+$`\hat{y}`$ = Predicted value\
 y = Actual value
 
 # Mean Square Error with L1 (Lasso) Regularisation
@@ -67,9 +67,9 @@ y = Actual value
 \lambda\sum_{i=1}^{m}|\theta_{i}|
 ```
 **Where:**\
-$\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
+$`\lambda`$ = Regularisation penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
-$\theta_{i}$ = Weights for each feature (from 1 - m)\
+$`\theta_{i}`$ = Weights for each feature (from 1 - m)\
 
 **Combining L1 (Lasso) Regularisation with MSE:**\
 ```math
@@ -88,9 +88,9 @@ $\theta_{i}$ = Weights for each feature (from 1 - m)\
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
+$`\lambda`$ = Regularisation penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
-$\theta_{i}$ = Weights for each feature (from 1 - m)\
+$`\theta_{i}`$ = Weights for each feature (from 1 - m)\
 
 **Combining L2 (Ridge) Regularisation with MSE:**\
 ```math
@@ -109,10 +109,10 @@ $\theta_{i}$ = Weights for each feature (from 1 - m)\
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
-$\alpha$ = Alpha constant to control L1 and L2 penalty (recommended: 0.05)\
+$`\lambda`$ = Regularisation penalty constant (recommended: 0.0001)\
+$`\alpha`$ = Alpha constant to control L1 and L2 penalty (recommended: 0.05)\
 m = Number of total columns (Total features in a dataset)\
-$\theta_{i}$ = Weights for each feature (from 1 - m)
+$`\theta_{i}`$ = Weights for each feature (from 1 - m)
 
 **Combining L2 (Ridge) Regularisation with MSE:**\
 ```math
@@ -134,15 +134,15 @@ $\theta_{i}$ = Weights for each feature (from 1 - m)
 ```
 
 **Where:**\
-$L(\theta)$ = Loss function\
+$`L(\theta)`$ = Loss function\
 n = Number of total rows (Total dataset count)\
 m = Number of total columns (Total dataset features)\
-$\frac{1}{n}\sum_{i=1}^{n}$ = Sum of total rows (i from 1 to n)\
-$\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
-$\hat{y}$ = Predicted value\
+$`\frac{1}{n}\sum_{i=1}^{n}`$ = Sum of total rows (i from 1 to n)\
+$`\frac{1}{n}\sum_{j=1}^{m}`$ = Sum of total columns (i from 1 to m)\
+$`\hat{y}`$ = Predicted value\
 y = Actual value\
-$\lambda$ = L1 constant\
-$|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)
+$`\lambda`$ = L1 constant\
+$`|\theta_{i}|`$ = Absolute value of weight with index i (i from feature 0 to m)
 
 # Derivative of loss w.r.t Bias
 ```math
@@ -159,15 +159,15 @@ $|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)
 ```
 
 **Where:**\
-$L(\theta)$ = Loss function\
+$`L(\theta)`$ = Loss function\
 n = Number of total rows (Total dataset count)\
 m = Number of total columns (Total dataset features)\
-$\frac{1}{n}\sum_{i=1}^{n}$ = Sum of total rows (i from 1 to n)\
-$\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
-$\hat{y}$ = Predicted value\
+$`\frac{1}{n}\sum_{i=1}^{n}`$ = Sum of total rows (i from 1 to n)\
+$`\frac{1}{n}\sum_{j=1}^{m}`$ = Sum of total columns (i from 1 to m)\
+$`\hat{y}`$ = Predicted value\
 y = Actual value\
-$\lambda$ = L1 constant\
-$|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)\
+$`\lambda`$ = L1 constant\
+$`|\theta_{i}|`$ = Absolute value of weight with index i (i from feature 0 to m)\
 
 # Derivative of L1 Lasso Regularisation
 ```math
@@ -179,9 +179,9 @@ $|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)\
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant\
-$\theta_{j}$ = Weights at the jth feature\
-sign($\theta_{j}$) = Make $\theta$ as -1 if negative, 1 if positive and 0 if = 0 since it is not differentiable at 0
+$`\lambda`$ = Regularisation penalty constant\
+$`\theta_{j}`$ = Weights at the jth feature\
+sign($`\theta_{j}`$) = Make $`\theta`$ as -1 if negative, 1 if positive and 0 if = 0 since it is not differentiable at 0
 
 # Derivative of L2 Ridge Regularisation
 ```math
@@ -193,8 +193,8 @@ sign($\theta_{j}$) = Make $\theta$ as -1 if negative, 1 if positive and 0 if = 0
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant\
-$\theta_{j}$ = Weights at the jth feature
+$`\lambda`$ = Regularisation penalty constant\
+$`\theta_{j}`$ = Weights at the jth feature
 
 # Derivative of Elastic Net Regularisation
 ```math
@@ -206,10 +206,10 @@ $\theta_{j}$ = Weights at the jth feature
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant\
-$\alpha$ = Mixing Ratio for L1 and L2\
-$\theta_{j}$ = Weights at the jth feature\
-sign($\theta_{j}$) = Make $\theta$ as -1 if negative, 1 if positive and 0 if = 0 since it is not differentiable at 0
+$`\lambda`$ = Regularisation penalty constant\
+$`\alpha`$ = Mixing Ratio for L1 and L2\
+$`\theta_{j}`$ = Weights at the jth feature\
+sign($`\theta_{j}`$) = Make $`\theta`$ as -1 if negative, 1 if positive and 0 if = 0 since it is not differentiable at 0
 
 # Root Mean Square Error:
 It is in short, the square root of the mean square error function we have explained earlier:\
@@ -221,7 +221,7 @@ It is in short, the square root of the mean square error function we have explai
 
 # R-Square Formula
 - It is used to calculate how well our linear regression model fits with the dataset. Think of it as an accuracy score for Linear Regression itself.
-- We do not use accuracy score to calculate the accuracy of our linear regression model as it is impossible for our model to predict the exact same value as the actual value (i.e. \$4700000 vs \$4700000). Thus, we estimate how close our model is in guessing the actual value correctly.
+- We do not use accuracy score to calculate the accuracy of our linear regression model as it is impossible for our model to predict the exact same value as the actual value (i.e. \$`4700000 vs \`$4700000). Thus, we estimate how close our model is in guessing the actual value correctly.
 - In R-Square score, it ranges from 0 to 1 where 0 indicates the model is just random guessing while 1 is a perfect fit. The lower the loss value, the higher the R-Square value.
 
 **Formula:**
@@ -230,6 +230,6 @@ It is in short, the square root of the mean square error function we have explai
 ```
 
 **Where:**\
-$y_{i}$ = Actual value for ith index\
-$\hat{y}_{i}$ = Predicted value for ith index\
-$\bar{y}_{i}$ = Mean of the actual value
+$`y_{i}`$ = Actual value for ith index\
+$`\hat{y}_{i}`$ = Predicted value for ith index\
+$`\bar{y}_{i}`$ = Mean of the actual value

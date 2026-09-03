@@ -31,7 +31,7 @@ Let's take a look at some classic dataset with continuous values and discrete va
 ## How to relate Linear Regression to Logistics Regression
 
 - In linear regression, our goal is to simply draw the best fit line on the data plot that minimizes the loss to get an accurate prediction
-- On the other hand, in logistics regression, similarly in linear regression, we will first calculate the predicted output, $\hat{y} = X\theta + b$, but we will add an extra step by passing this predicted output into a function, which is the `Sigmoid Function`
+- On the other hand, in logistics regression, similarly in linear regression, we will first calculate the predicted output, $`\hat{y} = X\theta + b`$, but we will add an extra step by passing this predicted output into a function, which is the `Sigmoid Function`
 - The goal of sigmoid function is to convert the continuous predicted value we have earlier into discrete probabilistic value which ranges from 0 to 1.
 - The converted values we will call it as **logits**, and it helps us to predict & classify each data row where logits > 0.5 will be classified as 1 while logits < 0.5 will be classified as 0.
 
@@ -52,18 +52,18 @@ z = X\theta + b\\
 ```
 
 Where:\
-$\sigma(x)$: Sigmoid function\
+$`\sigma(x)`$: Sigmoid function\
 e: Exponential value
 
-- Notice that we swap the notation from $\hat{y}$ to $z$, this is because we usually use $\hat{y}$ as our final predicted output, and since that is not the case in logistics, we will just use z for a placeholder notation instead.
+- Notice that we swap the notation from $`\hat{y}`$ to $`z`$, this is because we usually use $`\hat{y}`$ as our final predicted output, and since that is not the case in logistics, we will just use z for a placeholder notation instead.
 - As you can see from the graph here, by using sigmoid function, it forces our continuous predicted output into probabilistic(discrete) values as its function range is only [0, 1]
 - This means that output after passing through sigmoid can only be between 0 and 1, which satisfy probability concepts as well, since values cannot be more than 1 and less than 0.
 
 Thus, Logistics Regression essentially is just Linear Regression with extra steps to convert continuous numbers into discrete probabilistic numbers, then in the end classify it to be either binary 0 or 1.
 
 ## Steps in Logistics Regression:
-1. Calculate the output by $z = X\theta$ + b
-2. Pass in the output with sigmoid activation function to form probabilistic logits ($\frac{1}{1+e^{-z}}$)
+1. Calculate the output by $`z = X\theta`$ + b
+2. Pass in the output with sigmoid activation function to form probabilistic logits ($`\frac{1}{1+e^{-z}}`$)
 3. Pass the logits into the loss with cost function (Binary Cross Entropy)
 4. Fit (minimize) the gradient of the loss by adjusting the weights and bias values using gradient descent
 5. Repeat this for epoch number of times(i.e. 2000) until it converges (meaning the gradient calculated is already minimized)
@@ -81,7 +81,7 @@ L(\theta) = -\frac{1}{n}\sum_{i=1}^{n}(y_i\ln(\hat{y_i}) + (1-y_i)\ln(1-\hat{y_i
 
 Where:\
 n = Total number of data in datasets (total row)\
-$\hat{y}_i$: Predicted output for ith data row (The probabilistic logits)\
+$`\hat{y}_i`$: Predicted output for ith data row (The probabilistic logits)\
 ln: Natural logarithm
 
 **Vector Form:**
@@ -90,19 +90,19 @@ L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}))
 ```
 
 To think of how the loss function works:
-- It takes in the predicted $\hat{y}$ which is the logits (i.e. 0.667) and compare it with the actual classified value y (i.e. 1)
+- It takes in the predicted $`\hat{y}`$ which is the logits (i.e. 0.667) and compare it with the actual classified value y (i.e. 1)
 - If the predicted probabilistic value is closer to the actual classification (0.667 is almost close to 1) meaning the model is getting more accurate, the loss given will become lower since the model is accurate
 - If the predicted probabilistic value is farther from the actual classification (0.667 is very far from 0), then the model is wrong and larger loss will be given to tell the model to adjust the wrong prediction
 - The weights and bias will then be adjusted based on the loss using gradient descent to ensure it predicts all data accurately by their actual class (1 or 0):
 
 ## Gradient Descent
-**Weights:** $\theta_{j}=\theta_{j}-\alpha\frac{\partial }{\partial \theta_{j}}L(\theta)$\
-**Bias:** $b=b-\alpha\frac{\partial }{\partial b}L(\theta)$
+**Weights:** $`\theta_{j}=\theta_{j}-\alpha\frac{\partial }{\partial \theta_{j}}L(\theta)`$\
+**Bias:** $`b=b-\alpha\frac{\partial }{\partial b}L(\theta)`$
 
 **Where:**\
-$L(\theta)$ = Cost Function / Loss\
-$\alpha$ = Learning Rate\
-$\theta_{j}$ = Weights for the jth column (jth feature)\
+$`L(\theta)`$ = Cost Function / Loss\
+$`\alpha`$ = Learning Rate\
+$`\theta_{j}`$ = Weights for the jth column (jth feature)\
 b = Bias
 
 ## Binary Cross Entropy Loss with L2 Ridge
@@ -116,10 +116,10 @@ L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot ln(\hat{y}_{i})+(1-y_{i})\cdot ln
 ```
 
 **Where:**\
-$\theta$ = Weights with respect to Cost Function(loss)\
+$`\theta`$ = Weights with respect to Cost Function(loss)\
 n = Total rows of data\
 ln = Natural logarithm\
-$y_{i}$ = Actual output for ith data row (0 or 1)\
+$`y_{i}`$ = Actual output for ith data row (0 or 1)\
 $`\hat{y}_{i}`$ = Predicted output for ith data row (0 or 1)\
 $`\lambda`$ = L2 Ridge Regularization constant
 Penalty = $`\lambda\sum_{i=1}^{n}(\theta^{2})`$
@@ -178,10 +178,10 @@ L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}) + \lambd
 ```
 
 **Where:**\
-$L(\theta)$ = Cost Function / Loss\
-$\theta_{j}$ = Weights for the jth column (from j to m of features)\
+$`L(\theta)`$ = Cost Function / Loss\
+$`\theta_{j}`$ = Weights for the jth column (from j to m of features)\
 n = Total rows of data (from i to n of data)\
-$y_{i}$ = Actual output for ith data row (0 or 1)\
+$`y_{i}`$ = Actual output for ith data row (0 or 1)\
 $`\hat{y}_{i}`$ = Predicted output for ith data row (0 or 1)\
 Derivative = $`\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})`$\
 $`x_{ij}`$ = Entire X_train or X_test (contains from i to n of total data and from j to m of total features)\
@@ -204,9 +204,9 @@ Penalty = $`\lambda\sum_{k=1}^{m}(\theta^{2}_{k})`$, where it takes the square o
 ```
 
 **Where:**\
-$\lambda$ = Regularisation penalty constant\
-$\theta_{j}$ = Weights at the jth feature\
-$\theta$ = Vector Weights (Shape: m, 1)
+$`\lambda`$ = Regularisation penalty constant\
+$`\theta_{j}`$ = Weights at the jth feature\
+$`\theta`$ = Vector Weights (Shape: m, 1)
 
 **Vector Form:**
 ```math
