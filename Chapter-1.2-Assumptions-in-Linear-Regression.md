@@ -23,14 +23,14 @@ As you can see in the **first image**, the data between the Features and the Out
 However, in the **second image**, the data between the Features and the Output are scatterd in a non-linear relationship. As a result, we are unable to draw a line that best fit the dataset.
 
 **How to overcome non-linearity if it is violated:**
-1. `Use non-linear regression models`: Non-linear regression models like `polynomial regression` are the best choice when dealing with non-linear relationship between features and output. This is because it uses polynomial terms like $x^2$ and $x^3$, which allows the best fit line to bend and fit the non-linear dataset. We will cover it in detail in future topics
+1. `Use non-linear regression models`: Non-linear regression models like `polynomial regression` are the best choice when dealing with non-linear relationship between features and output. This is because it uses polynomial terms like $`x^2`$ and $`x^3`$, which allows the best fit line to bend and fit the non-linear dataset. We will cover it in detail in future topics
 
 # b) Homoscedasticity of Residuals
 The second assumption states that the variance of the residuals should be constant and not increasing across all level.
 
-- In simple words, this means that the variance of the residuals(error) in the Linear Regression model, $\epsilon$, should be spread equally across the data in a uniform manner. 
+- In simple words, this means that the variance of the residuals(error) in the Linear Regression model, $`\epsilon`$, should be spread equally across the data in a uniform manner.
 
-You may have seen the error term in Linear Regression formula, as it represents in simple words the difference between `predicted output`, $\hat{y}$ and `actual output`, y. As illustrated below:\
+You may have seen the error term in Linear Regression formula, as it represents in simple words the difference between `predicted output`, $`\hat{y}`$ and `actual output`, y. As illustrated below:\
 ![Homoscedasticity of Residuals Graph](LinearRegressionImage/Homoscedasticity_Residual_Plot.jpg)
 ![Heteroscedasticity of Residuals Graph](LinearRegressionImage/Heteroscedasticity_Residual_Plot.jpg)
 
@@ -38,11 +38,11 @@ You may have seen the error term in Linear Regression formula, as it represents 
 - **Second Graph (Homoscedasticity)**: The residuals(error) are spread unevenly at all levels. This means that the difference between `predicted output` and the `actual output` is increasing along with the `output`, y value. This results in a increasing variance.
 
 **Example of homoscedasticity and heteroscedasticity with House Price Prediction**:
-- `Homoscedasticity`: The difference in value(`residual`) between the predicted value and the actual value of house prices at **\$200000** is **equal** to the `residuals` between the predicted value and the actual value at **\$1000000**.\
+- `Homoscedasticity`: The difference in value(`residual`) between the predicted value and the actual value of house prices at **\$`200000** is **equal** to the `residuals` between the predicted value and the actual value at **\`$1000000**.\
 This means that the **variance** of the residuals is **constant** across all house prices, as their difference is constant across all house prices
 
 
-- `Heteroscedasticity`: The residual between the predicted value and the actual value of house prices at **\$200000** is lower than the `residuals` between the predicted value and the actual value at **\$1000000**.\
+- `Heteroscedasticity`: The residual between the predicted value and the actual value of house prices at **\$`200000** is lower than the `residuals` between the predicted value and the actual value at **\`$1000000**.\
 This means that the **variance** of the residuals is **lower** across all house prices, as their difference is constant across all house prices
 
 **Additional Notes:**
@@ -50,7 +50,7 @@ This means that the **variance** of the residuals is **lower** across all house 
 - The data points **above** the best fit line(`predicted output`) represents **positive residuals**, while the data points **below** the best fit line represents **negative residuals**.
 
 # c) Independent and Identically Distributed (IID)
-The third assumption states that the error term(residuals), $\epsilon$, in Linear Regression model should not have any correlation with the output and distributed normally.
+The third assumption states that the error term(residuals), $`\epsilon`$, in Linear Regression model should not have any correlation with the output and distributed normally.
 - Let's break this into 2 parts, `independent` and `identically distributed`
 
 **i. Independent**

@@ -8,13 +8,15 @@
 **1. What is Linear Regression?**
 - 
 - In simple terms, the most basic form of Linear Regression is very similar to the line function that most have learnt during high school, which is as below:\
-$$y = \theta_0 + X\theta_1 + \epsilon$$
+```math
+y = \theta_0 + X\theta_1 + \epsilon
+```
 Where:
 - y = The output (actual value)
-- $\theta_0$ = The y-intercept (we will call it as bias)
-- $\theta_1$ = The gradient corresponding to X (we will call it as weights)
+- $`\theta_0`$ = The y-intercept (we will call it as bias)
+- $`\theta_1`$ = The gradient corresponding to X (we will call it as weights)
 - X = The dependent variable (we will call it as feature)
-- $\epsilon$ = The error value for random noise or related feature that are not included (This will be negligible for most of the time)
+- $`\epsilon`$ = The error value for random noise or related feature that are not included (This will be negligible for most of the time)
 
 **Example: House Price Dataset**
 - Let's take a house dataset for example, where it consists of 1 dependent variable(**area of the house**) and 1 responding variable(**price of the house**), as shown below:
@@ -34,38 +36,42 @@ Thus, we will need a different approach to handle such problems, where we will b
 **Multiple Linear Regression (MLR)**
 -
 The general formula of MLR can be described as below:
-$$y = \theta_0+X_1\theta_1+X_2\theta_2+...+X_m\theta_m$$
+```math
+y = \theta_0+X_1\theta_1+X_2\theta_2+...+X_m\theta_m
+```
 **Where:**
 y = The output (actual value)\
-$\theta_0$ = The bias mentioned above\
-$\theta_1$ = The weights corresponding to the first feature\
-$X_1$ = One of the features that affects the final output\
-$\theta_m$ = The weights corresponding to the mth feature\
-$X_m$ = The mth feature in a dataset
+$`\theta_0`$ = The bias mentioned above\
+$`\theta_1`$ = The weights corresponding to the first feature\
+$`X_1`$ = One of the features that affects the final output\
+$`\theta_m`$ = The weights corresponding to the mth feature\
+$`X_m`$ = The mth feature in a dataset
 
-In short, each X's represents a single variable(feature) that influence the y(output), and each $\theta$ is the gradient(weights) corresponding to each variable(feature). You may think of it as below:\
-1. $X_1$: `Area of house`
-2. $X_2$: `Number of bedrooms`
-3. $X_3$: `Number of bathrooms`\
+In short, each X's represents a single variable(feature) that influence the y(output), and each $`\theta`$ is the gradient(weights) corresponding to each variable(feature). You may think of it as below:\
+1. $`X_1`$: `Area of house`
+2. $`X_2`$: `Number of bedrooms`
+3. $`X_3`$: `Number of bathrooms`\
 ...
-4. $X_m$: `The furnish status of the house`
+4. $`X_m`$: `The furnish status of the house`
 5. y: `Price of house`
 
 This can be rewritten cleanly using the summation notation:
 **Multiple Linear Regression (Summation):**
-$$y = \theta_0 + \sum_{j=1}^{m}X_j\theta_j$$
+```math
+y = \theta_0 + \sum_{j=1}^{m}X_j\theta_j
+```
 **Where:**
 y = The output value\
-$\theta_0$ = The bias value\
-$\theta_j$ = The jth weights from 1 to m\
-$X_j$ = The jth feature value from 1 to m
+$`\theta_0`$ = The bias value\
+$`\theta_j`$ = The jth weights from 1 to m\
+$`X_j`$ = The jth feature value from 1 to m
 
 Furthermore, in practical coding when building these algorithms, we'll be representing these variables in matrices using numpy. This makes it easier to compute instead of using loops through the summation. 
 
 Before we show the matrix form of Linear Regression, here are the constant notations that'll be used throughout the notes and you should know to prevent confusion for the readers.
 
-Suppose we have a dataset, with m features and n data samples. We then set y as the target values with X as the input values, then $\theta$ as the weights values and b as the bias value. Thus, the matrix format will be as below:
-$$
+Suppose we have a dataset, with m features and n data samples. We then set y as the target values with X as the input values, then $`\theta`$ as the weights values and b as the bias value. Thus, the matrix format will be as below:
+```math
 y=\begin{bmatrix}
 y_1\\
 y_2\\
@@ -90,36 +96,38 @@ X_{n1} & X_{n2} & X_{n3} & ... & X_{nm}\\
 b=\begin{bmatrix}
 b_1
 \end{bmatrix}
-$$
+```
 
 The shape of each matrix will be:
-$$
+```math
 \begin{aligned}
 \text{Shape y: } (n, 1), \\
 \text{Shape X: } (n, m), \\
 \text{Shape }\theta\text{: } (m, 1), \\
 \text{Shape b: } (1, 1)
 \end{aligned}
-$$
+```
 
 **Thus,**
 **Multiple Linear Regression (Matrix form):**
-$$y = X\theta + b$$
+```math
+y = X\theta + b
+```
 **Where:**
 y = The output matrix with shape of (n, 1)\
 X = The input matrix with shape of (n, m)\
-$\theta$ = The weight matrix with shape of (m, 1)\
+$`\theta`$ = The weight matrix with shape of (m, 1)\
 b = The bias with shape of (1, 1)
 
 Based on the matrix form of each variable, it is closely resembles:
-$$
+```math
 \begin{aligned}
 & y = X\theta + b\\
 &\approx y_i = \theta_0 + \sum_{j=1}^{m}x_{ij}\theta_j, i = 1,...,n 
 \end{aligned}
-$$
-- Where $y_i$ represents the single data sample target value and $X_i$ represents the single data input values, with i as data sample index from 1 to n.
-- In the general Multiple Linear Regression above, we're simplifying it by excluding the index i, but in reality it is a formula for a single data sample. If we want to include all data samples, we'll be using index i such that $y_i$ and $x_ij$ is the target and input value for the ith data sample
+```
+- Where $`y_i`$ represents the single data sample target value and $`X_i`$ represents the single data input values, with i as data sample index from 1 to n.
+- In the general Multiple Linear Regression above, we're simplifying it by excluding the index i, but in reality it is a formula for a single data sample. If we want to include all data samples, we'll be using index i such that $`y_i`$ and $`x_ij`$ is the target and input value for the ith data sample
 
 Thus, in conclusion below is the finalized notation that we'll reuse throughout the notes:
 **a) General:**\
@@ -129,20 +137,20 @@ n: Total number of data samples
 **b) Summation:**\
 i: Index for data samples from 1 to n\
 j: Index for data features from 1 to m\
-$y_i$: Target Output for the ith index\
-$x_{ij}$: Input for the ith index and jth feature\
-$\theta_j$: Weights for the jth feature\
-$\theta_0$: Bias
+$`y_i`$: Target Output for the ith index\
+$`x_{ij}`$: Input for the ith index and jth feature\
+$`\theta_j`$: Weights for the jth feature\
+$`\theta_0`$: Bias
 
 **c) Matrix:**\
 y: Target output matrix with shape of (n, 1)
 X: Data input matrix with shape of (n, m)
-$\theta$: Data feature weights with shape of (m, 1)
+$`\theta`$: Data feature weights with shape of (m, 1)
 b: Bias with shape of (1,1)
 
 **Additional Note**:
 - From this chapter onwards, we'll be introducing 2 ways of writing the formulas, which are the `Summation` and the `Matrix form`. For the first few chapters we'll be covering both but both of them are the same. Furthermore, for most concepts we'll be using the matrix format since it is more intuitive and practical in code as we'll be using matrix instead of summation loops, as per the author's opinion.
-- If you're confusing how we can do summation using matrix, remember we use dot product where we multiply each values and sum them up together, for example $X\theta$ will multiply and sum them up across all number of weights, m. For more details can refer to dot product between matrix and matrix shape dimension compatibility
+- If you're confusing how we can do summation using matrix, remember we use dot product where we multiply each values and sum them up together, for example $`X\theta`$ will multiply and sum them up across all number of weights, m. For more details can refer to dot product between matrix and matrix shape dimension compatibility
 - If you're wondering how we can add bias, b without affecting dimension error matrix, we're doing something called broadcasting where we add the single (1,1) bias into each result samples from 1 to n.
 
 In Multiple Linear Regression, you can imagine it as a multidimensional graph where different variables at each dimension is affecting the value of the output. For instance:\
@@ -164,23 +172,27 @@ In Multiple Linear Regression, you can imagine it as a multidimensional graph wh
 - Additionally, we have divided the total loss with the total number of dataset (n) to calculate the average loss. This is to prevent gradient exploding due to large loss value.
 
 **Formula (Summation):**
-$$J(\theta)=\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$
+```math
+J(\theta)=\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}
+```
 
 **Where:**
-1. $J(\theta)$: Cost function (MSE)
+1. $`J(\theta)`$: Cost function (MSE)
 2. n = Number of total rows (Total dataset count)
-3. $\hat{y_{i}}$ = Predicted value for the ith data sample
-4. $y_i$ = Actual value for the ith data sample
+3. $`\hat{y_{i}}`$ = Predicted value for the ith data sample
+4. $`y_i`$ = Actual value for the ith data sample
 
 **Formula (Matrix):**
-$$J(\theta)=\frac{1}{2n}||y - \hat{y_{i}}||_2^{2}$$
+```math
+J(\theta)=\frac{1}{2n}||y - \hat{y_{i}}||_2^{2}
+```
 
 **Where:**\
-$||y-\hat{y}||_2^2$: L2 Norm of Mean Square Error
+$`||y-\hat{y}||_2^2`$: L2 Norm of Mean Square Error
 
 Do not be worry about the sudden change in appearance of the MSE in summation and matrix form, it is equivalent where the L2 Norm is used to represent that the MSE output is in vectorized form with a 2 dimensional shape of (n, 1) instead of a single data sample in summation form. We'll be explaining more about L1 and L2 norm in `Chapter 4.1: Regularization` later on.
 
-**Additional Note**: The 2 in the denominator is often used in many research papers and articles to cancel out the 2 in power rule derivation, $(\hat{y}_i-y_i)^2$ later
+**Additional Note**: The 2 in the denominator is often used in many research papers and articles to cancel out the 2 in power rule derivation, $`(\hat{y}_i-y_i)^2`$ later
 
 **Conclusion of MSE**
 In conclusion, the goal of the loss function with MSE is to calculate the difference between actual value and predicted value, and adjust our Linear Regression line to best fit the dataset so that the difference will be lower. This is known as minimizing our loss function which will be discussed later in `Section 3: Optimization in Linear Regression`.
@@ -206,7 +218,7 @@ Thus, in `Gradient Descent`, we will be minimizing the error by taking the **MSE
 Below is the derivation of MSE with respect to weights and bias:
 
 **Derivative of loss w.r.t Weights**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}L(\theta)\\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -217,18 +229,18 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(x_{ij}+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})x_{ij}
 \end{aligned}
-$$
+```
 **Where:**\
-$L(\theta)$ = Loss function\
+$`L(\theta)`$ = Loss function\
 n = Number of total rows (Total dataset count)\
 m = Number of total columns (Total dataset features)\
-$\frac{1}{n}\sum_{i=1}^{n}$ = Sum of total rows (i from 1 to n)\
-$\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
-$\hat{y}$ = Predicted value\
+$`\frac{1}{n}\sum_{i=1}^{n}`$ = Sum of total rows (i from 1 to n)\
+$`\frac{1}{n}\sum_{j=1}^{m}`$ = Sum of total columns (i from 1 to m)\
+$`\hat{y}`$ = Predicted value\
 y = Actual value\
 
 **Derivative of loss w.r.t Bias**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial b}L(\theta)\\
 & =\frac{\partial }{\partial b}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -239,30 +251,34 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(0+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})
 \end{aligned}
-$$
+```
 **Where:**\
-$L(\theta)$ = Loss function\
+$`L(\theta)`$ = Loss function\
 n = Number of total rows (Total dataset count)\
 m = Number of total columns (Total dataset features)\
-$\frac{1}{n}\sum_{i=1}^{n}$ = Sum of total rows (i from 1 to n)\
-$\frac{1}{n}\sum_{j=1}^{m}$ = Sum of total columns (i from 1 to m)\
-$\hat{y}$ = Predicted value\
+$`\frac{1}{n}\sum_{i=1}^{n}`$ = Sum of total rows (i from 1 to n)\
+$`\frac{1}{n}\sum_{j=1}^{m}`$ = Sum of total columns (i from 1 to m)\
+$`\hat{y}`$ = Predicted value\
 y = Actual value\
 
 **Additional Notes:** The derivative of MSE in matrix form will be shown in Section 3b): OLS method later on
 
 Before we continue explaining the graph, the formula for Gradient Descent is as below:
-$$\theta = \theta-\alpha\frac{\partial J(\theta)}{\partial \theta}$$
-$$b = b - \alpha\frac{\partial J(\theta)}{\partial b}$$
+```math
+\theta = \theta-\alpha\frac{\partial J(\theta)}{\partial \theta}
+```
+```math
+b = b - \alpha\frac{\partial J(\theta)}{\partial b}
+```
 Where:
-1. $\theta$: Feature Weights
-2. $\alpha$: Learning Rate
-3. $\frac{\partial J(\theta)}{\partial \theta}$: Derivative of cost function
+1. $`\theta`$: Feature Weights
+2. $`\alpha`$: Learning Rate
+3. $`\frac{\partial J(\theta)}{\partial \theta}`$: Derivative of cost function
 
 By using our knowledge on Gradient Descent formula we can now fully understand the graph above:
 1. First we will be calculating the gradient of the MSE(loss), which is the upper blue line
 2. Then we will be reducing the loss value(black dot) by minus the weight with the gradient of the loss
-3. The learning rate, $\alpha$, is used to act as a guard to step the loss value down steadily until it reaches the minimum point
+3. The learning rate, $`\alpha`$, is used to act as a guard to step the loss value down steadily until it reaches the minimum point
 4. In conclusion, in gradient descent, the loss value is dropped by minus the weights with the gradient of the loss multiplied by a learning rate until it reaches the minimum point of the quadratic loss function, which is also the minimum loss
 
 **Learning Rate Additional Notes**
@@ -277,17 +293,19 @@ Below is the derivation of the OLS function:\
 For z is a matrix with a fixed size:
 
 **Let:**
-$$z=(y-X\theta)$$
+```math
+z=(y-X\theta)
+```
 **Then:**
-$$
+```math
 \begin{aligned}
 & J(\theta)= \frac{1}{2n}z^Tz\\
 & =\frac{1}{2n}(y-X\theta)^T(y-X\theta)\\
 & \approx\frac{1}{2n}\sum_{i=1}^{n}(y-\hat{y})^{2}, \hat{y}=X\theta\\
 \end{aligned}
-$$
+```
 **Thus,**
-$$
+```math
 \begin{aligned}
 & \frac{\partial J(\theta)}{\partial \theta} =\frac{\partial }{\partial \theta}(\frac{1}{2n}(y-X\theta)^T(y-X\theta))\\
 & = \frac{1}{2n}\frac{\partial }{\partial \theta}((X\theta)^TX\theta-(X\theta)^Ty-y^T(X\theta)+y^Ty)\\
@@ -299,69 +317,83 @@ $$
 & = -\frac{1}{n}(X^Ty-X^TX\theta)\\
 & = -\frac{1}{n}X^T(y-X\theta)
 \end{aligned}
-$$
+```
 
 **Where:**
 1. X: Features Matrix
-2. $X^T$: Transpose of X
+2. $`X^T`$: Transpose of X
 3. y: Output matrix
-4. $\theta$: Weights of features
+4. $`\theta`$: Weights of features
 
-- In step 3, we use the rule of $a^Tb=(a^Tb)^T=b^Ta$, where $a^Tb$ is scalar
-- In step 5. we used the rule $\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta$ for A is a symmetrical matrix, thus $\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta$
-- In step 5 as well, we fit the dimension of $\frac{\partial }{\partial \theta}(2y^T(X\theta))$ to be the same as $X^TX\theta$, then we apply the rule $\frac{\partial }{\partial \theta}(a^T\theta)=a$
-- Lastly in step 5, we used the rule $\frac{\partial }{\partial \theta}(X)=0$ as partial derivative of any unrelated variable will be treated as a constant. Hence, since the derivative of constant is 0, we get $\frac{\partial }{\partial \theta}(y^Ty) = 0$
+- In step 3, we use the rule of $`a^Tb=(a^Tb)^T=b^Ta`$, where $`a^Tb`$ is scalar
+- In step 5. we used the rule $`\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta`$ for A is a symmetrical matrix, thus $`\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta`$
+- In step 5 as well, we fit the dimension of $`\frac{\partial }{\partial \theta}(2y^T(X\theta))`$ to be the same as $`X^TX\theta`$, then we apply the rule $`\frac{\partial }{\partial \theta}(a^T\theta)=a`$
+- Lastly in step 5, we used the rule $`\frac{\partial }{\partial \theta}(X)=0`$ as partial derivative of any unrelated variable will be treated as a constant. Hence, since the derivative of constant is 0, we get $`\frac{\partial }{\partial \theta}(y^Ty) = 0`$
 ****
 **Step 3 Explanation:**\
 The rule we used in step 3 is called `transpose rule`, which is as below:
-$$a^Tb=(a^Tb)^T=b^Ta$$
-Where $a^Tb$ is scalar, which is a (1x1) matrix. This is because the transpose of a single number its still itself. For example, $3^T=3$.
+```math
+a^Tb=(a^Tb)^T=b^Ta
+```
+Where $`a^Tb`$ is scalar, which is a (1x1) matrix. This is because the transpose of a single number its still itself. For example, $`3^T=3`$.
 
-Thus, since our $(X\theta)^Ty$ is scalar, (1x1) matrix, we can apply the transpose rule:
-$$(X\theta)^Ty = ((X\theta)^Ty)^T =  y^T(X\theta)$$
+Thus, since our $`(X\theta)^Ty`$ is scalar, (1x1) matrix, we can apply the transpose rule:
+```math
+(X\theta)^Ty = ((X\theta)^Ty)^T =  y^T(X\theta)
+```
 
 **Step 5 Part 1 Explanation:**\
 Symmetrical matrix refers to a square matrix who is equal to its transposed, for example:
-$$
+```math
 A=
 \begin{pmatrix}
 1 & 1 & -1\\
 1 & 2 & 0\\
 -1 & 0 & 5
 \end{pmatrix}
-$$
-In the rule $\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta$, it only works when A matrix is symmetrical. In our case, our symmetrical A matrix refers to $X^TX$, as dot product of a matrix with its transpose will form a squared symmetrical matrix.
+```
+In the rule $`\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta`$, it only works when A matrix is symmetrical. In our case, our symmetrical A matrix refers to $`X^TX`$, as dot product of a matrix with its transpose will form a squared symmetrical matrix.
 
 Thus, you may visualize the comparison between the rule and our OLS derivation in step 5 as below:
-$$\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta$$
-$$\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta$$
-Where both $X^TX$ and A are symmetrical matrix
+```math
+\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta
+```
+```math
+\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta
+```
+Where both $`X^TX`$ and A are symmetrical matrix
 
 **Step 5 Part 2 Explanation:**\
 In step 5, we use dimension consistency rules, where we ensure there is no dimension mismatch in matrix arithmetic operation: 
 
-Thus, since $y^TX\theta$ is scalar,
-$$2y^TX\theta=(2y^TX\theta)^T=2(X\theta)^Ty=(2(X\theta)^Ty)^T=2(X^Ty)^T\theta$$
+Thus, since $`y^TX\theta`$ is scalar,
+```math
+2y^TX\theta=(2y^TX\theta)^T=2(X\theta)^Ty=(2(X\theta)^Ty)^T=2(X^Ty)^T\theta
+```
 
-And then we will apply the rule where $\frac{\partial }{\partial \theta}(a^T\theta)=a$:
-$$\frac{\partial }{\partial \theta}((X^Ty)^T\theta)=X^Ty$$
-Since $y^TX\theta$ is scalar, we can apply transpose rule to rewrite it as $(X^Ty)^T\theta$, which then we can apply the rule $\frac{\partial }{\partial \theta}(a^T\theta)=a$
+And then we will apply the rule where $`\frac{\partial }{\partial \theta}(a^T\theta)=a`$:
+```math
+\frac{\partial }{\partial \theta}((X^Ty)^T\theta)=X^Ty
+```
+Since $`y^TX\theta`$ is scalar, we can apply transpose rule to rewrite it as $`(X^Ty)^T\theta`$, which then we can apply the rule $`\frac{\partial }{\partial \theta}(a^T\theta)=a`$
 ****
 **Additional Notes:** 
-- By using OLS, we are assuming that $X^TX$ is invertible matrix. This means that the features in X should not be as closely with each other. This is because when the features are linearly dependent on each other, it will result in $X^TX$ to grow closer to a singular matrix that is non-invertible. More proves will be explained in `Chapter 1.2: Advanced Linear Regression Topics`
-- Besides that, in many OLS notes you might see that they use $\frac{\partial J(\theta)}{\partial \theta}=X^TX\theta-X^Ty$ instead of having an extra $\frac{1}{n}$. The reason we introduce an extra n denominator is to ensure that our gradient scale with the dataset size. Without dividing with n to get the average, our gradient value will be extremely large and sometimes explode at large datasets. 
+- By using OLS, we are assuming that $`X^TX`$ is invertible matrix. This means that the features in X should not be as closely with each other. This is because when the features are linearly dependent on each other, it will result in $`X^TX`$ to grow closer to a singular matrix that is non-invertible. More proves will be explained in `Chapter 1.2: Advanced Linear Regression Topics`
+- Besides that, in many OLS notes you might see that they use $`\frac{\partial J(\theta)}{\partial \theta}=X^TX\theta-X^Ty`$ instead of having an extra $`\frac{1}{n}`$. The reason we introduce an extra n denominator is to ensure that our gradient scale with the dataset size. Without dividing with n to get the average, our gradient value will be extremely large and sometimes explode at large datasets.
 - For example after getting the average of gradient by dividing it with the total dataset, 1000 rows of data vs 1000000 rows of data will have roughly similar numbers as the gradient we calculated is the average across all the data. Likewise, if we do not divide it with n, the gradient we get is the total sum of all the data rows, which will be very large when we have large dataset.
 
-If we make the derivative of the MSE, $J(\theta)$ as 0 (which matches minimum loss as gradient = 0 at minimum point), you'll get:
-$$
+If we make the derivative of the MSE, $`J(\theta)`$ as 0 (which matches minimum loss as gradient = 0 at minimum point), you'll get:
+```math
 \begin{aligned}
 & 0 = -\frac{1}{n}(X^Ty-X^TX\theta)\\
 & X^TX\theta=X^Ty
 \end{aligned}
-$$
+```
 
-Thus, we can form a closed formula for minimizing the weights, $\theta$ by throwing the $X^TX$ into right hand side:
-$$\theta = (X^TX)^{-1}X^Ty$$
+Thus, we can form a closed formula for minimizing the weights, $`\theta`$ by throwing the $`X^TX`$ into right hand side:
+```math
+\theta = (X^TX)^{-1}X^Ty
+```
 
 As a result, we don't need any steps like in gradient descent, where we can directly throw in this formula to calculate the minimum value of the loss, assuming everything here is in matrix form
 
@@ -379,7 +411,7 @@ As a result, we don't need any steps like in gradient descent, where we can dire
 2. Deterministic Solution: It provides an exact answer, while Gradient Descent provides an approximate optimal answer
 
 **OLS Disadvantage:**
-1. `High Computational Cost and Numerically Unstable`: Due to multiplication of matrices and their inverse, the complexity of OLS is very high, which is in O($n^3$). Furthermore, OLS is highly unstable in nature due to ill-conditioned $X^TX$ and coefficient variance explosion in `Multicollinearity`. Explanation for complexity will be in `Chapter 1.3: Linear Regression Optimization and Complexity` while explanation for OLS numerically unstable will be in `Chapter 1.2: Advanced Linear Regression Topics` 
+1. `High Computational Cost and Numerically Unstable`: Due to multiplication of matrices and their inverse, the complexity of OLS is very high, which is in O($`n^3`$). Furthermore, OLS is highly unstable in nature due to ill-conditioned $`X^TX`$ and coefficient variance explosion in `Multicollinearity`. Explanation for complexity will be in `Chapter 1.3: Linear Regression Optimization and Complexity` while explanation for OLS numerically unstable will be in `Chapter 1.2: Advanced Linear Regression Topics`
 2. `Suitable for small to medium dataset`: As mentioned earlier, due to its high computational cost, it is hard to implement OLS in large dataset as it will consume too many resources, and it is not worth it
 3. `Lack of generality`: OLS is only suitable to be used in a specific scenario, which is Linear Regression
 
@@ -394,7 +426,7 @@ You have now learnt about:
 
 In the next part, `Chapter 1.2 Advanced Linear Regression Topics`, we will learn about: 
 1. Assumption in Linear Regression
-2. Multicollinearity in Linear Regression (VIF, Ridge/Lasso and why $(X^TX)^{-1}$ fails in highly correlated variables)
+2. Multicollinearity in Linear Regression (VIF, Ridge/Lasso and why $`(X^TX)^{-1}`$ fails in highly correlated variables)
 
 # Further reading
 1. `Chapter 2.1: Logistic Regression`: Dive in to the other Linear Model family member that output probabilistic values for categorical tasks
