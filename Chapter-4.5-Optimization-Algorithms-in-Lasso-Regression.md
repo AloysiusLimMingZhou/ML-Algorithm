@@ -217,7 +217,7 @@ $g(\theta)$: Mean Square Error, MSE\
 $h(\theta)$: Lasso Regularization Penalty\
 $\lambda$: Regularization constant\
 $||\theta-\theta_{new}||^2_2$: Calculate the distance between the old weight and the new weight, which is equivalent to: $(\sqrt{\theta^2-\theta_{new}^2})$. The subscript 2 represents the L2 Normalization, which is known as Euclidean Norm\
-$||\theta||_1$: The subscript 1 represents the L1 norm of the weights, which is equivalent to $\sum_{j=1}^{m}|\theta_j|$
+$`||\theta||_1`$: The subscript 1 represents the L1 norm of the weights, which is equivalent to $`\sum_{j=1}^{m}|\theta_j|`$
 
 **Additional Notes:** 
 1. For many cases here you'll see that we're switching to matrix notation, as the author believe it'll be easier to understand and transition well to practical code since we'll be using numpy for vector and matrix manipulation of X, y, weights and bias.

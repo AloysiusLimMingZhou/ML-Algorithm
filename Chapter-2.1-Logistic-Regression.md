@@ -120,9 +120,9 @@ $\theta$ = Weights with respect to Cost Function(loss)\
 n = Total rows of data\
 ln = Natural logarithm\
 $y_{i}$ = Actual output for ith data row (0 or 1)\
-$\hat{y}_{i}$ = Predicted output for ith data row (0 or 1)\
-$\lambda$ = L2 Ridge Regularization constant
-Penalty = $\lambda\sum_{i=1}^{n}(\theta^{2})$
+$`\hat{y}_{i}`$ = Predicted output for ith data row (0 or 1)\
+$`\lambda`$ = L2 Ridge Regularization constant
+Penalty = $`\lambda\sum_{i=1}^{n}(\theta^{2})`$
 
 **Vector Form:**
 ```math
@@ -182,11 +182,11 @@ $L(\theta)$ = Cost Function / Loss\
 $\theta_{j}$ = Weights for the jth column (from j to m of features)\
 n = Total rows of data (from i to n of data)\
 $y_{i}$ = Actual output for ith data row (0 or 1)\
-$\hat{y}_{i}$ = Predicted output for ith data row (0 or 1)\
-Derivative = $\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})$\
-$x_{ij}$ = Entire X_train or X_test (contains from i to n of total data and from j to m of total features)\
-$\lambda$ = Regularization penalty constant\
-Penalty = $\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$, where it takes the square of each weights from kth = 1 feature to mth feature
+$`\hat{y}_{i}`$ = Predicted output for ith data row (0 or 1)\
+Derivative = $`\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})`$\
+$`x_{ij}`$ = Entire X_train or X_test (contains from i to n of total data and from j to m of total features)\
+$`\lambda`$ = Regularization penalty constant\
+Penalty = $`\lambda\sum_{k=1}^{m}(\theta^{2}_{k})`$, where it takes the square of each weights from kth = 1 feature to mth feature
 
 **Vector Form**
 ```math
