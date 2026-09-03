@@ -45,11 +45,11 @@ LOOCV Visualisation Image from `An Introduction to Statistical Learning in Pytho
 - Thus, in practice, we will be looping through the iteration, and calculate the MSE loss for each iteration by comparing the single test data and the predicted output. In the end, we will be averaging the sum of MSE for n iterations and average it by n, the amount of dataset, which is as below:
 
 **Test Loss in LOOCV using MSE:**
-$$
+```math
 \begin{aligned}
 & \frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_i}^{-i})^2\\
 \end{aligned}
-$$
+```
 
 **Where:**\
 n: Total Amount of data samples in a dataset\
@@ -77,13 +77,13 @@ Reference: Zitao's Web (3 min of Machine Learning: Cross Validation)
 - Thus, since its mechanism is similar to LOOCV but on a larger scale of testing dataset, the formula will be similar, shown as below:
 
 **Test Loss in k-fold CV using MSE:**
-$$
+```math
 \begin{aligned}
 & \frac{1}{k}\sum_{i=1}^{k}\frac{1}{D_i}\sum_{j\in D_i}(y_j-\hat{y_j}^{(i)})^2\\
 & \text{Where: }\\
 & \underbrace{\frac{1}{k}\underbrace{\sum_{i=1}^{k}\underbrace{\frac{1}{|D_i|}\underbrace{\sum_{j\in D_i}(y_j - \hat{y_j}^{(i)})^2}_{\text{Sum of Squred Errors across multiple test data samples, j in a single fold, }D_i}}_{\text{Average the sum of MSE by the number of data samples in a single fold}}}_{\text{Sum of the average of MSE across all folds}}}_{\text{Average the overall MSE by each fold}}
 \end{aligned}
-$$
+```
 
 **Where:**\
 k: Total amount of folds divided in a dataset\

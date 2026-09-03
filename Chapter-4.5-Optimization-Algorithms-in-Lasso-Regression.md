@@ -37,12 +37,18 @@ $argmin_x f(x) = 3$: This is because in argmin, we're finding the value of the f
 
 **Coordinate Descent explanation and generalization in Math:**
 - The goal of coordinate descent is to minimize the loss function of the Lasso Regression, where we set it as f(x).
-$$min_\theta f(\theta_j)$$
+```math
+min_\theta f(\theta_j)
+```
 - In Lasso, our loss function is separate into 2 parts, with the first part as the MSE=$\frac{1}{n}(y-X\theta)^2$, we call it $g(\theta)$ here, and Lasso Penalty=$\sum_{j=1}^{m}\lambda|\theta_j|$, we call it $\sum_{j=1}^{m}h(\theta_j)$ here.
 - When combined, the final Lasso loss is as below:
-$$f(\theta_j)=g(\theta_j)+h(\theta_j)$$
+```math
+f(\theta_j)=g(\theta_j)+h(\theta_j)
+```
 - Thus, the generalized formula for coordinate descent is:
-$$\theta_j^{(k)}=argmin_{\theta_j} f(\theta_1^{(k)}, \theta_2^{(k)},...,\theta_{j-1}^{(k)}, \theta_j, \theta_{j+1}^{(k-1)},...\theta_m^{(k-1)})$$
+```math
+\theta_j^{(k)}=argmin_{\theta_j} f(\theta_1^{(k)}, \theta_2^{(k)},...,\theta_{j-1}^{(k)}, \theta_j, \theta_{j+1}^{(k-1)},...\theta_m^{(k-1)})
+```
 **Where:**
 $\theta_j$: Weight for jth feature
 $f(\theta_1, \theta_2,...,\theta_{j-1}, \theta_j, \theta_{j+1}, \theta_{m})$: Loss function of Lasso with m total weights as parameters.
@@ -68,78 +74,82 @@ k: Iterations of the coordinate descent. This is more complicated and will cover
 **1. Modified gradient MSE loss for coordinate descent**
 - In this part, we will be modifying the gradient loss by adjusting from getting the entire sum of the loss of all weights to separating each individual weights loss from the entire weights loss in OLS, which is shown as below:
 
-$$
+```math
 \begin{aligned}
 & \frac{\partial J(\theta)^{MSE}}{\partial \theta_j}=-\frac{1}{n}x^T_j(y-x_j\theta_j)\\
 &= -\frac{1}{n}x^T_j(y-(x_j\theta_j+\sum_{k\ne j}^{m}x_k\theta_k))\\
 &= -\frac{1}{n}x^T_j(y-(x_j\theta_j+x_{k\ne j}\theta_{k\ne j}))
 \end{aligned}
-$$
+```
 
 **2. Combining modified MSE gradient with Lasso:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial J(\theta)^{Lasso}}{\partial \theta_j}=-\frac{1}{n}x^T_j(y-(x_j\theta_j+x_{k\ne j}\theta_{k\ne j}))+\lambda\cdot \frac{\partial }{\partial \theta}(|\theta|_1)\\
 &= -\frac{1}{n}x^T_jy+\frac{1}{n}x^T_jx_j\theta_j+\frac{1}{n}x^T_jx_{k\ne j}\theta_{k\ne j}+\lambda\cdot \frac{\partial }{\partial \theta}(|\theta|_1)\\
 & \text{Let } p_j= \frac{1}{n}x^T_jy-\frac{1}{n}x^T_jx_{k\ne j}\theta_{k\ne j},\\
 &= -p_j+\frac{1}{n}x^T_jx_j\theta_j+\lambda\cdot \frac{\partial }{\partial \theta}(|\theta|_1)
 \end{aligned}
-$$
+```
 
 **3. Set gradient to be 0:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial J(\theta)^{Lasso}}{\partial \theta_j}=-p_j+\frac{1}{n}x^T_jx_j\theta_j+\lambda\cdot \frac{\partial }{\partial \theta}(|\theta|_1)\\
 & 0 = -p_j+\frac{1}{n}x^T_jx_j\theta_j+\lambda\cdot \frac{\partial }{\partial \theta}(|\theta|_1)\\
 &= \begin{cases} -p_j+\frac{1}{n}x^T_jx_j\theta_j-\lambda& \text{if } \theta_{j} < 0 \\ {[-p_j-\lambda, -p_j+\lambda]} & \text{if } \theta_{j} = 0 \\ -p_j+\frac{1}{n}x^T_jx_j\theta_j+\lambda& \text{if } \theta_{j}> 0 \end{cases}\\
 \end{aligned}
-$$
+```
 
 **4. Soft Thresholding**
 Thus, when we're doing soft thresholding, we can solve for $\theta_j$ for each case:
 
 **When $\theta_j<0$,**
-$$
+```math
 \begin{aligned}
 & -p_j+\frac{1}{n}x^T_jx_j\theta_j-\lambda = 0\\
 & \frac{1}{n}x^T_jx_j\theta_j = p_j+\lambda\\
 & x^T_jx_j\theta_j = np_j+n\lambda\\
 & \theta_j = (np_j+n\lambda)(x^T_jx_j)^{-1}, p_j < -\lambda
 \end{aligned}
-$$
+```
 **Additional Note:** The reason we set the condition $p_j < -\lambda$ is to ensure that the final expression value is in negative, which ensures that $\theta_j$ < 0 and not flipping it to be $\theta_j > 0$, which violates the KKT condition.
 
 **When $\theta_j >0$,**
-$$
+```math
 \begin{aligned}
 & -p_j+\frac{1}{n}x^T_jx_j\theta_j+\lambda = 0\\
 & \frac{1}{n}x^T_jx_j\theta_j = p_j-\lambda\\
 & x^T_jx_j\theta_j = np_j-n\lambda\\
 & \theta_j = (np_j-n\lambda)(x^T_jx_j)^{-1}, p_j > \lambda
 \end{aligned}
-$$
+```
 **Additional Note:** Similarly above, the reason we set the condition $p_j > \lambda$ is to ensure that the final expression value is in positive, which ensures that $\theta_j$ > 0 and not flipping it to be $\theta_j < 0$, which violates the KKT condition.
 
 **When $\theta_j$=0,**
-$$
+```math
 \begin{aligned}
 & 0 \in [-p_j-\lambda, -p_j+\lambda]\\
 & -p_j-\lambda \leqslant 0 \leqslant -p_j+\lambda\\
 & -\lambda \leqslant p_j \leqslant \lambda
 \end{aligned}
-$$
+```
 
 Thus, we can rewrite this as:
-$$
+```math
 \begin{aligned}
 \begin{cases} \theta_j=(np_j+n\lambda)(x^T_jx_j)^{-1}& \text{if } p_j < -\lambda \\ \theta_j=0 & \text{if } -\lambda \leqslant p_j \leqslant \lambda \\ \theta_j=(np_j-n\lambda)(x^T_jx_j)^{-1}& \text{if } p_j > \lambda \end{cases}\\
 \end{aligned}
-$$
+```
 
 This can be summarized into a soft thresholding summation:
-$$\theta_j=n(x^T_jx_j)^{-1}\cdot S(p_j, \lambda)$$
+```math
+\theta_j=n(x^T_jx_j)^{-1}\cdot S(p_j, \lambda)
+```
 Where $S(p_j, \lambda)$ is the soft thresholding function notation, scaled to n the total number of dataset and the inverse of OLS matrix $(x^T_jx_j)^{-1}$. To be more specific, the $S(p_j, \lambda)$ can be written as:
-$$S(p_j, \lambda)=sign(p_j)\cdot max(|p_j|-\lambda, 0)$$
+```math
+S(p_j, \lambda)=sign(p_j)\cdot max(|p_j|-\lambda, 0)
+```
 This matches with the earlier example we use, $max(2-\lambda, 0)$.
 
 **Conclusion of Coordinate Descent**
@@ -147,11 +157,13 @@ In short, in coordinate descent, it allows Lasso to calculate the partial error 
 
 **Additional Notes:**
 - In some academic papers or lecture notes, you might see that the soft thresholding function is written as:
-$$\theta_j=S(p_j, \lambda)$$
+```math
+\theta_j=S(p_j, \lambda)
+```
 - This can be explained in 2 reasons:
 1. In their OLS gradient, they do not scale by n. Thus, there's no $\frac{1}{n}$ in their OLS gradient loss and there'll be no n in the final expression. The reason why we choose to scale by n is to prevent the gradient from exploding as we're calculating the dot product across all datasets. Thus, if we do not scale by n to get the average of the gradient, the gradient of 1,000,000 datasets will be astronomically larger than 1,000 datasets. 
 2. On the other hand, for simplification reasons, many academic examples use orthogonal matrix. As explained above in our Lasso example where we use orthogonal matrix X as well, the beauty lies in that the dot product of an orthogonal matrix with its transpose is exactly the identity matrix, I. Thus, the inverse of $X^TX$, $(X^TX)^{-1}$ will be just I, and scale it by n it'll be nI. Thus, the final expression will be as below:
-$$
+```math
 \begin{aligned}
 & \begin{cases} \theta_j=(np_j+n\lambda)& \text{if } p_j < -\lambda \\ \theta_j=0 & \text{if } -\lambda \leqslant p_j \leqslant \lambda \\ \theta_j=(np_j-n\lambda)& \text{if } p_j > \lambda \end{cases}\\ 
 & \\
@@ -159,9 +171,11 @@ $$
 & \\
 & \theta_j=n\cdot S(p_j, \lambda)
 \end{aligned}
-$$
+```
 And since the examples does not scale by n, thus without n at the end it'll just be:
-$$\theta_j=S(p_j, \lambda)$$
+```math
+\theta_j=S(p_j, \lambda)
+```
 3. Lastly, in our Lasso example above, we further simplify the example by setting the other weights as 0, $\sum_{k\ne j}^{m}x_k\theta_k=0$ while focusing on the individual weight, $\theta_j$. For example, when we focus on the first feature weight, $\theta_1$, the other weight, $\theta_2$ is 0 and vice versa. In practical coordinate descent we do not set other weights as 0, as we simply just let the other weights remain their as-if value.
 
 **Stochastic Gradient Descent vs Coordinate Descent**:
@@ -189,9 +203,13 @@ On the other hand, in Coordinate Descent, thanks to the soft thresholding functi
 - In proximal gradient descent, it is used to approximately minimize a function where it consists of both smooth and non-smooth parts, where one part of the function is differentiable, while the other part is non-differentiable.
 - This means that when we're splitting a function, f($\theta$) into 2 parts, namely g($\theta$) and h($\theta$) the first part of the function, g(x) is differentiable while the other part, h(x) is non-differentiable.
 - Let's take an example of the Lasso regression loss function:
-$$f(\theta)=\left( \underbrace{\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}}_{\text{g(}\theta\text{) - Differentiable}}+ \underbrace{\lambda\sum_{i=1}^{m}|\theta_{i}|}_{\text{h(}\theta\text{) - (Non-Differentiable)}} \right)$$
+```math
+f(\theta)=\left( \underbrace{\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}}_{\text{g(}\theta\text{) - Differentiable}}+ \underbrace{\lambda\sum_{i=1}^{m}|\theta_{i}|}_{\text{h(}\theta\text{) - (Non-Differentiable)}} \right)
+```
 - When we rewrite it in matrix form:
-$$f(\theta)=\left( \underbrace{\frac{1}{2n}||y-X\theta||^2_2}_{\text{g(}\theta\text{)}}+ \underbrace{\lambda||\theta||_1}_{\text{h(}\theta\text{)}} \right)$$
+```math
+f(\theta)=\left( \underbrace{\frac{1}{2n}||y-X\theta||^2_2}_{\text{g(}\theta\text{)}}+ \underbrace{\lambda||\theta||_1}_{\text{h(}\theta\text{)}} \right)
+```
 
 Where:
 $f(\theta)$: The Lasso Loss function\
@@ -218,19 +236,23 @@ Thus, the steps of `Proximal Gradient Descent`, specifically `Iterative Soft Thr
 Here's the mathematical steps for the ISTA:
 
 a) Break the function into differential and non-differential parts
-$$f(\theta)=\left( \underbrace{\frac{1}{2n}||y-X\theta||^2_2}_{\text{g(}\theta\text{)}}+ \underbrace{\lambda||\theta||_1}_{\text{h(}\theta\text{)}} \right)$$
+```math
+f(\theta)=\left( \underbrace{\frac{1}{2n}||y-X\theta||^2_2}_{\text{g(}\theta\text{)}}+ \underbrace{\lambda||\theta||_1}_{\text{h(}\theta\text{)}} \right)
+```
 
 b) Update the weights, $||\theta||$ using basic gradient descent on g($\theta$)
-$$
+```math
 \begin{aligned}
 & \theta = \theta - \alpha\frac{\partial }{\partial \theta} \frac{1}{2n}(y-X\theta)^2\\
 & = \theta + \alpha\frac{1}{n}X^T(y-X\theta)
 \end{aligned}
-$$
+```
 
 c) Compute the new weights using previous vector values and proximal operator to minimize f($\theta$) value
 The general proximal operator for non-differential part, h(x) in Proximal Gradient Descent is as below:
-$$prox_{h,\alpha}(x) = argmin_z\frac{1}{2\alpha}||z-x||^2_2+h(z)$$
+```math
+prox_{h,\alpha}(x) = argmin_z\frac{1}{2\alpha}||z-x||^2_2+h(z)
+```
 Where:\
 h: h(z) non-differential part\
 $\alpha$: Learning rate\
@@ -239,10 +261,12 @@ z: New weight vector, you can think of it as $x^{new}$\
 $argmin_z$: Finding the value of vector z that minimizes the h(x) value.
 
 For better understanding, you can imagine vector $\theta$ as a group of points in the cartesian plane, and your goal is to find the new group of points, vector z, which helps reduce the h($\theta$) value such that it is minimized. For example:
-$$z-x = x^{new} - x^{old} = \text{min } h(x)$$
+```math
+z-x = x^{new} - x^{old} = \text{min } h(x)
+```
 
 Now we can plug it in into our ISTA with f($\theta$) Lasso loss function:
-$$
+```math
 \begin{aligned}
 & \text{Consider:}\\
 & f(\theta) = \left( \underbrace{\frac{1}{2}||y-X\theta||^2_2}_{\text{g(}\theta\text{)}}+ \underbrace{\lambda||\theta||_1}_{\text{h(}\theta\text{)}} \right)\\
@@ -251,36 +275,46 @@ $$
 &= argmin_{\theta_{new}} \frac{1}{2}||\theta-\theta_{new}||^2_2+\alpha\lambda||\theta_{new}||_1\\
 &= S_{\lambda}(\theta)
 \end{aligned}
-$$
+```
 Where:
 $prox_\alpha(\theta)$: The proximal operator with respect to the weights, $\theta$ using the learning rate, $\alpha$
 
 After reading Coordinate Descent, the final minimizing formula might see familiar to you:
 - Coordinate descent:
-$$\theta_j^{(k)}=argmin_{\theta_j} f(\theta_1^{(k)}, \theta_2^{(k)},...,\theta_{j-1}^{(k)}, \theta_j, \theta_{j+1}^{(k-1)},...\theta_m^{(k-1)})$$
+```math
+\theta_j^{(k)}=argmin_{\theta_j} f(\theta_1^{(k)}, \theta_2^{(k)},...,\theta_{j-1}^{(k)}, \theta_j, \theta_{j+1}^{(k-1)},...\theta_m^{(k-1)})
+```
 where f($\theta_j$) = g($\theta_j$) + h($\theta_j$)
 - Proximal Gradient Descent (ISTA):
-$$\theta = argmin_{\theta_{new}} \frac{1}{2}||\theta-\theta_{new}||^2_2+\alpha\lambda||\theta_{new}||_1$$
+```math
+\theta = argmin_{\theta_{new}} \frac{1}{2}||\theta-\theta_{new}||^2_2+\alpha\lambda||\theta_{new}||_1
+```
 where f($\theta$) = g($\theta$) + h($\theta$)
 
 Where the goal for both optimization algorithms is to calculate the weight values that minimizes the Lasso loss function, as seen in $argmin_{\theta_{new}}$
 
 Thus, similar to coordinate descent, we will also derive a soft thresholding function for proximal gradient descent as well:
-$$\theta = S_{\lambda\alpha}(\theta)$$
+```math
+\theta = S_{\lambda\alpha}(\theta)
+```
 Which can be derived into:
-$$\begin{cases} S_{\lambda\alpha}(\theta)_j=(\theta_j-\alpha\lambda)& \text{if } \theta_j > \alpha\lambda \\ \theta_j=0 & \text{if } -\alpha\lambda \leqslant \theta_j \leqslant \alpha\lambda \\ \theta_j=(\theta_j+\alpha\lambda)& \text{if } \theta_j < -\alpha\lambda \end{cases}$$
+```math
+\begin{cases} S_{\lambda\alpha}(\theta)_j=(\theta_j-\alpha\lambda)& \text{if } \theta_j > \alpha\lambda \\ \theta_j=0 & \text{if } -\alpha\lambda \leqslant \theta_j \leqslant \alpha\lambda \\ \theta_j=(\theta_j+\alpha\lambda)& \text{if } \theta_j < -\alpha\lambda \end{cases}
+```
 
 Lastly, recall that we have calculate the gradient descent of g($\theta$) to update the weights, we will be adding them into the proximal operator, specifically in the soft thresholding as well. This is to ensure that the updated weights is close to the minimum of g($\theta$) loss.
-$$
+```math
 \begin{aligned}
 & \theta_{k+1} = S_{\lambda\alpha}(\underbrace{\theta_k}_{\text{Proximal Operator}} - \underbrace{\alpha\nabla g(\theta_k)}_{\text{Gradient Descent of g(}\theta\text{)}})\\
 &= S_{\lambda\alpha}(\theta_k + \frac{\alpha}{n} X^T(y-X\theta_k)
 \end{aligned}
-$$
+```
 
 **Additional Note:**
 1. The reason that we're dividing with the learning rate, $\alpha$ in the proximal operator is based on the `decomposition of quadratic approximation` using Taylor Series expansion for gradient descent. From there you'll understand how proximal operator of h(x) can still ensure the point we're finding is close to g(x) gradient descent, which is as follow:
-$$\theta = argmin_{\theta_{new}} \frac{1}{2\alpha}||\theta_{new}-(x-\alpha\nabla g(\theta))||^2_2 + h(\theta_{new})$$
+```math
+\theta = argmin_{\theta_{new}} \frac{1}{2\alpha}||\theta_{new}-(x-\alpha\nabla g(\theta))||^2_2 + h(\theta_{new})
+```
 This generalized formula is where our Lasso version of proximal operator is derived from. The first term, $\frac{1}{2\alpha}||\theta_{new}-(x-\alpha\nabla g(\theta))||^2_2$ causes the distance between the new weight vector, z and the old weight vector, $\theta$ to be minimum through $argmin_z$ function and add it with h($\theta$) the non-differential part
 2. In some papers you might see the coordinates of points being flipped, such as $||\theta_{new}-\theta||^2_2$ or $||\theta-\theta_{new}||^2_2$. Both of them are the same as recall in calculating the distance between points, we calculate the magnitude which ignores positive or negative values
 

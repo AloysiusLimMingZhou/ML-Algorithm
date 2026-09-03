@@ -36,20 +36,20 @@ Let's take a look at some classic dataset with continuous values and discrete va
 - The converted values we will call it as **logits**, and it helps us to predict & classify each data row where logits > 0.5 will be classified as 1 while logits < 0.5 will be classified as 0.
 
 Exp: Converting Continuous Value into discrete, then classify them based on 0.5 threshold
-$$
+```math
 X\theta + b = \begin{bmatrix}1.45\\ 2.56\\ -1.78\\ -4.048\end{bmatrix} = \begin{bmatrix}0.81\\ 0.93\\ 0.144\\ 0.017\end{bmatrix} = \begin{bmatrix}1\\1\\0\\0\end{bmatrix}
-$$
+```
 
 ## Sigmoid function explanation
 ![Sigmoid Function](/LogisticRegressionImage/Sigmoid-Activation-Function.png)
 
 **Formula:**
-$$
+```math
 \begin{aligned}
 z = X\theta + b\\
 \sigma(x) = \frac{1}{1+e^{-z}}
 \end{aligned}
-$$
+```
 
 Where:\
 $\sigma(x)$: Sigmoid function\
@@ -75,9 +75,9 @@ Thus, Logistics Regression essentially is just Linear Regression with extra step
 
 **Formula:**
 **Summation Form:**
-$$
+```math
 L(\theta) = -\frac{1}{n}\sum_{i=1}^{n}(y_i\ln(\hat{y_i}) + (1-y_i)\ln(1-\hat{y_i}))
-$$
+```
 
 Where:\
 n = Total number of data in datasets (total row)\
@@ -85,7 +85,9 @@ $\hat{y}_i$: Predicted output for ith data row (The probabilistic logits)\
 ln: Natural logarithm
 
 **Vector Form:**
-$$L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}))$$
+```math
+L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}))
+```
 
 To think of how the loss function works:
 - It takes in the predicted $\hat{y}$ which is the logits (i.e. 0.667) and compare it with the actual classified value y (i.e. 1)
@@ -109,9 +111,9 @@ b = Bias
 
 **Formula:**
 **Summation Form:**
-$$
+```math
 L(\theta)=\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot ln(\hat{y}_{i})+(1-y_{i})\cdot ln(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k})
-$$
+```
 
 **Where:**\
 $\theta$ = Weights with respect to Cost Function(loss)\
@@ -123,14 +125,16 @@ $\lambda$ = L2 Ridge Regularization constant
 Penalty = $\lambda\sum_{i=1}^{n}(\theta^{2})$
 
 **Vector Form:**
-$$L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}) + \lambda\theta^2)$$
+```math
+L(\theta) = \frac{1}{n}(Y\cdot \ln(\hat{Y}) + (1-Y)\cdot \ln(1-\hat{Y}) + \lambda\theta^2)
+```
 
 ## Derivation of Loss in Gradient Descent
 - Since we are using gradient descent to solve our logistic Regression problem, we'll have to compute the derivative of our loss with respect to weight and bias
 
 **Derivative of Cost Function with respect to weights:**\
 **Summation Form:**
-$$
+```math
 \begin{aligned} 
 & \frac{\partial }{\partial \theta_{j}} L(\theta)\\ 
 &=\frac{\partial }{\partial \theta_{j}}[(-\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot ln(\hat{y}_{i})+(1-y_{i})\cdot ln(1-\hat{y}_{i})))]\\ 
@@ -146,14 +150,16 @@ $$
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})x_{ij}\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})x_{ij}\\ 
 \end{aligned}
-$$
+```
 **Vector Form:**
-$$\frac{\partial }{\partial \theta_{j}} L(\theta) = \frac{1}{n}X^T(\hat{Y} - Y)$$
+```math
+\frac{\partial }{\partial \theta_{j}} L(\theta) = \frac{1}{n}X^T(\hat{Y} - Y)
+```
 
 
 **Derivative of Cost Function with respect to bias:**\
 **Summation Form**
-$$
+```math
 \begin{aligned} 
 & \frac{\partial }{\partial b} L(\theta)\\ 
 &=\frac{\partial }{\partial b}(-\frac{1}{n}\sum_{i=1}^{n}(y_{i}\cdot ln(\hat{y}_{i})+(1-y_{i})\cdot ln(1-\hat{y}_{i}))+\lambda\sum_{k=1}^{m}(\theta^{2}_{k}))\\ 
@@ -169,7 +175,7 @@ $$
 &=\frac{1}{n}\sum_{i=1}^{n}(g(z_{i})-y_{i})\\ 
 &=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})\\ 
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Cost Function / Loss\
@@ -183,17 +189,19 @@ $\lambda$ = Regularization penalty constant\
 Penalty = $\lambda\sum_{k=1}^{m}(\theta^{2}_{k})$, where it takes the square of each weights from kth = 1 feature to mth feature
 
 **Vector Form**
-$$\frac{\partial }{\partial \theta_{j}} L(\theta) = \frac{1}{n}(\hat{Y} - Y)$$
+```math
+\frac{\partial }{\partial \theta_{j}} L(\theta) = \frac{1}{n}(\hat{Y} - Y)
+```
 
 # Derivative of L2 Ridge Regularisation
 **Summation Form**:
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\lambda\sum_{i=1}^{m}(\theta_{i})^{2})\\
 &= \lambda\cdot 2\cdot \theta_{j}\\
 &= 2\lambda\theta_{j}
 \end{aligned}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant\
@@ -201,15 +209,19 @@ $\theta_{j}$ = Weights at the jth feature\
 $\theta$ = Vector Weights (Shape: m, 1)
 
 **Vector Form:**
-$$\frac{\partial }{\partial \theta}(\lambda\theta^{2}) = 2\lambda\theta$$
+```math
+\frac{\partial }{\partial \theta}(\lambda\theta^{2}) = 2\lambda\theta
+```
 
 
 # Final Loss Derivative wrt different regularization:
 **2. BCE and L2**:\
 **Summation Form:**
-$$
+```math
 \frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})x_{ij} + 2\lambda\theta_{j}
-$$
+```
 
 **Vector Form:**
-$$\frac{1}{n}X^T(\hat{Y}-Y) + 2\lambda\theta$$
+```math
+\frac{1}{n}X^T(\hat{Y}-Y) + 2\lambda\theta
+```

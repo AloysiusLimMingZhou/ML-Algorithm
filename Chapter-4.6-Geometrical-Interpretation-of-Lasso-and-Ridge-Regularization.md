@@ -5,27 +5,27 @@
 
 # Constraint form of Lasso and Ridge regularization
 Recall from `Chapter 4.3: Lagrangian Duality`, we have designed a closed constraint form for the Lasso L1 Regularization, which is as follows:
-$$
+```math
 \begin{aligned}
 & \underbrace{min_{\theta}\frac{1}{2n}(||y-\hat{y}||^{2}_2)}_{\text{f(}\theta\text{) - MSE Part in Lasso Loss}} \\
 & \text{Such that: }\\
 & ((||\theta||_1 - t) \le 0)\\
 & \underbrace{||\theta||_1 \le t}_{\text{g(}\theta\text{) - Absolute Value Function Lasso Penalty}}\\
 \end{aligned}
-$$
+```
 Where:
 $||\theta||_1$ = L1 Norm for vector weights $\theta$
 t = Budget Constraint
 
 Thus, we can formulate the same closed constraint form for Ridge L2 Regularization as well, such that:
-$$
+```math
 \begin{aligned}
 & \underbrace{min_{\theta}\frac{1}{2n}(||y-\hat{y}||^{2})}_{\text{f(}\theta\text{) - MSE Part in Ridge Loss}} \\
 & \text{Such that: }\\
 & ((||\theta||_2^2 - t) \le 0)\\
 & \underbrace{||\theta||_2^2 \le t}_{\text{g(}\theta\text{) - Sum of Weight Square Ridge Penalty}}\\
 \end{aligned}
-$$
+```
 Where:
 $||\theta||_2^2$ = L2 Norm for vector weights $\theta$ squared
 t = Budget Constraint

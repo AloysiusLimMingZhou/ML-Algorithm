@@ -32,9 +32,9 @@ b) random: Initialize both weights and bias as matrices filled with random numbe
 `Random` will be preferred as it is faster to fit weights and bias from an existing random number than 0.
 
 # Formula Breakdown:
-$$
+```math
 y = \theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{n}x_{n} + b
-$$
+```
 **Where:**\
 y = Actual value\
 x = Value for each feature\
@@ -48,9 +48,9 @@ b = Bias
 - Additionally, we have divided the total loss with the total number of dataset (n) to calculate the average loss. This is to prevent gradient exploding due to large loss value.
 
 **Formula:**\
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}
-$$
+```
 **Where:**\
 n = Number of total rows (Total dataset count)\
 $\hat{y}$ = Predicted value\
@@ -63,18 +63,18 @@ y = Actual value
 - The penalty of L1 Lasso Regularisation is calculated by combining the sum of absolute value weights, as shown below:
 
 **Formula:**\
-$$
+```math
 \lambda\sum_{i=1}^{m}|\theta_{i}|
-$$
+```
 **Where:**\
 $\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
 $\theta_{i}$ = Weights for each feature (from 1 - m)\
 
 **Combining L1 (Lasso) Regularisation with MSE:**\
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|
-$$
+```
 
 # Mean Square Error with L2 (Ridge) Regularisation
 **Explanation:**
@@ -83,9 +83,9 @@ $$
 - The penalty of L2 Ridge Regularisation is calculated by combining the sum of squares of the weights, as shown below:
 
 **Formula:**\
-$$
+```math
 \lambda\sum_{i=1}^{m}\theta_{i}^{2}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
@@ -93,9 +93,9 @@ m = Number of total columns (Total features in a dataset)\
 $\theta_{i}$ = Weights for each feature (from 1 - m)\
 
 **Combining L2 (Ridge) Regularisation with MSE:**\
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda\sum_{i=1}^{m}(\theta_{i})^{2}
-$$
+```
 
 # Mean Square Error with Elastic Net Regularisation
 **Explanation:**
@@ -104,9 +104,9 @@ $$
 - The penalty of Elastic Net Regularisation is calculated by combining both L1 and L2 penalty, and introducing an alpha parameters to control both penalty value for bias-variance tradeoffs :
 
 **Formula:**\
-$$
+```math
 \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
@@ -115,12 +115,12 @@ m = Number of total columns (Total features in a dataset)\
 $\theta_{i}$ = Weights for each feature (from 1 - m)
 
 **Combining L2 (Ridge) Regularisation with MSE:**\
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2} + \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})
-$$
+```
 
 # Derivative of loss w.r.t Weights
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}L(\theta)\\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -131,7 +131,7 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(x_{ij}+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})x_{ij}
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Loss function\
@@ -145,7 +145,7 @@ $\lambda$ = L1 constant\
 $|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)
 
 # Derivative of loss w.r.t Bias
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial b}L(\theta)\\
 & =\frac{\partial }{\partial b}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -156,7 +156,7 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(0+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})
 \end{aligned}
-$$
+```
 
 **Where:**\
 $L(\theta)$ = Loss function\
@@ -170,13 +170,13 @@ $\lambda$ = L1 constant\
 $|\theta_{i}|$ = Absolute value of weight with index i (i from feature 0 to m)\
 
 # Derivative of L1 Lasso Regularisation
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\lambda\sum_{i=1}^{m}|\theta_{i}|)\\
 &= \lambda\cdot  \begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases}\\
 &= \lambda\cdot \text{sign}(\theta_{j}), \text{sign}(0)\in [-1, 1]
 \end{aligned}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant\
@@ -184,26 +184,26 @@ $\theta_{j}$ = Weights at the jth feature\
 sign($\theta_{j}$) = Make $\theta$ as -1 if negative, 1 if positive and 0 if = 0 since it is not differentiable at 0
 
 # Derivative of L2 Ridge Regularisation
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\frac{\lambda}{2}\sum_{i=1}^{m}(\theta_{i})^{2})\\
 &= \frac{\lambda}{2}\cdot 2\cdot \theta_{j}\\
 &= \lambda\theta_{j}
 \end{aligned}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant\
 $\theta_{j}$ = Weights at the jth feature
 
 # Derivative of Elastic Net Regularisation
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}[\lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}(\theta_{i})^{2})]\\
 &= \lambda\alpha\begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases} + 2\lambda(1-\alpha)\theta_{j}\\
 &= \lambda\alpha\cdot \text{sign}(\theta_{j})+2\lambda(1-\alpha)\theta_{j}, \text{sign(0)}\in[-1, 1]
 \end{aligned}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant\
@@ -215,9 +215,9 @@ sign($\theta_{j}$) = Make $\theta$ as -1 if negative, 1 if positive and 0 if = 0
 It is in short, the square root of the mean square error function we have explained earlier:\
 
 **Formula:**
-$$
+```math
 \sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_{i}-y_{i})^{2}}
-$$
+```
 
 # R-Square Formula
 - It is used to calculate how well our linear regression model fits with the dataset. Think of it as an accuracy score for Linear Regression itself.
@@ -225,9 +225,9 @@ $$
 - In R-Square score, it ranges from 0 to 1 where 0 indicates the model is just random guessing while 1 is a perfect fit. The lower the loss value, the higher the R-Square value.
 
 **Formula:**
-$$
+```math
 1 - \frac{\sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2}}{\sum_{i=1}^{n}(y_{i}-\bar{y}_{i})^{2}}
-$$
+```
 
 **Where:**\
 $y_{i}$ = Actual value for ith index\

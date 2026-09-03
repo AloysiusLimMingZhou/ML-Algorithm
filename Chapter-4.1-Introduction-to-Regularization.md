@@ -54,18 +54,18 @@ In machine learning, there are 3 main regularization algorithms used to enhance 
 - In L1 Lasso Regularization, the formula is as below:
 
 **Formula (Summation):**\
-$$
+```math
 \lambda\sum_{i=1}^{m}|\theta_{i}|
-$$
+```
 **Where:**\
 $\lambda$ = Regularization penalty constant (recommended: 0.0001)\
 m = Number of total columns (Total features in a dataset)\
 $|\theta_{i}|$ = Absolute value of weights for each feature (from 1 - m)
 
 **Formula (Matrix):**\
-$$
+```math
 \lambda||\theta||_1
-$$
+```
 **Where:**\
 $\lambda$ = Regularization penalty constant (recommended: 0.0001)\
 $||\theta||_1$ = L1 Norm of the absolute value of weights matrix (Shape: m, 1)
@@ -76,12 +76,12 @@ $||\theta||_1$ = L1 Norm of the absolute value of weights matrix (Shape: m, 1)
 - Additionally, the $\lambda$ here is the regularization hyperparameter constant. Hyperparameter simply refers to the constants/parameters that are can be tuned/adjusted. The regularization hyperparameter is used to determine the scale of penalty imposed to the coefficients. In practical use case its optimum value is usually 0.0001.
 
 **Recap of Mean Square Error Formula:**
-$$
+```math
 \begin{aligned}
 & \frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}, \text{(Summation Form)}\\
 & \frac{1}{2n}||y-\hat{y}||_2^{2}, \text{(Matrix Form)}
 \end{aligned}
-$$
+```
 **Where:**\
 n = Number of total rows (Total dataset count)\
 $\hat{y_i}$ = Predicted value of the ith data sample\
@@ -99,61 +99,65 @@ $||y-\hat{y}||^2_2$ = L2 Norm of the MSE
 - The L1 Norm of a vector is in short the sum of the absolute value of all the elements in a vector, such that:
 
 **L1 Norm Formula:** 
-$$
+```math
 ||x||_1 = |x_1| + |x_2| + |x_3| + ... + |x_n|
-$$
+```
 - This explains why we represent the L1 Norm Vector for weights in Lasso, as it is equivalent to the sum of absolute values of weights shown in the summation notation.
 
 **L2 Norm (Euclidean Norm):**
 - The L2 Norm of a vector is the square root of the sum of squares of all the elements in a vector, such that:
 
 **L2 Norm Formula:**
-$$
+```math
 ||x||_2 = \sqrt{x^2_1 + x^2_2 + x^2_3 + ... + x^2_n}
-$$
+```
 - Thus, this is why we apply the square of L2 Norm into Ridge Regularization and MSE, which is the sum of squares of the weights as shown below:
 
 **L2 Norm in Ridge Penalty:**
-$$
+```math
 \begin{aligned}
 & ||\theta||_2^2 = (\sqrt{\theta_1^2 + \theta_2^2 + \theta_3^2 + ... + \theta_m^2})^2\\
 &=  \theta_1^2 + \theta_2^2 + \theta_3^2 + ... + \theta_m^2\\
 &\approx \sum_{j=1}^{m} \theta_j^2
 \end{aligned}
-$$
+```
 
 **L2 Norm in MSE Loss Function:**
-$$
+```math
 \begin{aligned}
 & ||y-\hat{y}||_2^2 = (\sqrt{(y_1-\hat{y}_1)^2 + (y_2-\hat{y}_2)^2 + (y_3-\hat{y}_3)^2 + ... + (y_n-\hat{y}_n)^2})^2\\
 &= (y_1-\hat{y}_1)^2 + (y_2-\hat{y}_2)^2 + (y_3-\hat{y}_3)^2 + ... + (y_n-\hat{y}_n)^2\\
 &\approx \sum_{i=1}^{n} (y_i-\hat{y_i})^2
 \end{aligned}
-$$
+```
 
 Do not be confused between L1 and L2 Norm with L1 Lasso and L2 Ridge. L1 and L2 Norm represents the vector notation, while L1 Lasso and L2 Ridge represents the Regularization Techniques. Both are completely different topics so be aware.
 
 **Additional Notes:** We use $\frac{1}{2n}$ instead of $\frac{1}{n}$ in `Mean Square Error(MSE)` as it helps to counter out the 2 from the power rule derivation of square later on.
 
 **Addition of L1 Lasso Regularization into MSE:**
-$$
+```math
 \begin{aligned}
 & \frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|, \text{(Summation Form)}\\
 & \frac{1}{2n}(y-\hat{y})^{2} + \lambda||\theta||_1, \text{(Matrix Form)}
 \end{aligned}
-$$
+```
 **Where:**\
 $\frac{1}{2n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})^{2}$: Mean Square Error (MSE) function\
 $\lambda\sum_{i=1}^{m}|\theta_{i}|$: L1 Lasso Penalty
 
 - Note that in `L1 Lasso Regularization`, we do not impose $\frac{\lambda}{2}$ like in `L2 Ridge Regularization`, as it does not have any power rule derivation multiplication in it, which makes it unnecessary. To visualize:
-$$\frac{\partial }{\partial \theta_j}(\frac{\lambda}{2}\sum_{i=1}^{n}(\theta_i)^2) =\lambda\theta_j, \text{The power 2 cancels out the denominator 2, making it more aesthetic}$$
-$$\frac{\partial }{\partial \theta_j}(\lambda\sum_{i=1}^{n}|\theta_i|) =\lambda\cdot sign(\theta_j), sign(0)\in[-1, 1], \text{Since there's no power 2, we don't need to scale the denominator to make it aesthetic}$$
+```math
+\frac{\partial }{\partial \theta_j}(\frac{\lambda}{2}\sum_{i=1}^{n}(\theta_i)^2) =\lambda\theta_j, \text{The power 2 cancels out the denominator 2, making it more aesthetic}
+```
+```math
+\frac{\partial }{\partial \theta_j}(\lambda\sum_{i=1}^{n}|\theta_i|) =\lambda\cdot sign(\theta_j), sign(0)\in[-1, 1], \text{Since there's no power 2, we don't need to scale the denominator to make it aesthetic}
+```
 
 Now let's move on to deriving it for gradient descent later on:
 
 **Derivative of L1 Lasso Regularization (Summation Form):**\
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\lambda\sum_{i=1}^{m}|\theta_{i}|)\\
 &= \lambda\cdot  \begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases}\\
@@ -161,7 +165,7 @@ $$
 \text{Alternative:}\\
 & = \lambda{\partial }(|\theta_j|)
 \end{aligned}
-$$
+```
 **Where:**\
 $\lambda$: Regularisation penalty constant\
 $\theta_{j}$: Weights at the jth feature\
@@ -171,7 +175,7 @@ sign($\theta_j$) $\in$ [-1, 1] when $\theta_j = 0$\
 $\lambda{\partial }(|\theta_j|)$: Sub-gradient of $\theta_j$
 
 **Derivative of L1 Lasso Regularization (Matrix Form):**\
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\lambda||\theta||_1)\\
 &= \lambda\cdot  \begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases}\\
@@ -179,14 +183,14 @@ $$
 \text{Alternative:}\\
 & = \lambda{\partial }(||\theta_j||_1)
 \end{aligned}
-$$
+```
 
 - In this scenario, ${\partial }(|\theta_j|)$ is equivalent to sign($\theta$), where the result is 1 when weight($\theta$) is > 0, and -1 when weight($\theta$) is < 0.
 - If the weight($\theta$) = 0, the result can be any value within [-1, 1] interval. We will fully explain this as below but for now you may simplify the result to be 0, but note that it is not as simple as that.
 
 **Combining both gradient of MSE Loss and L1 Regularization:**\
 **Summation Form:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2} + \lambda\sum_{i=1}^{m}|\theta_{i}|)\\
@@ -194,7 +198,7 @@ $$
 &\text{Alternative:}\\
 &= \frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})x_{ij}+\lambda\cdot{\partial }(|\theta|_j)
 \end{aligned}
-$$
+```
 **Where:**\
 $\theta_j:$ Weights for jth feature\
 $\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_{i}})x_{ij}$: Gradient of MSE\
@@ -202,7 +206,7 @@ $\lambda\cdot \text{sign}(\theta_{j})$: Gradient of L1 Lasso Regularization\
 $\lambda$: Regularization penalty constant\
 
 **Matrix Form:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}\frac{1}{2n}||y_-\hat{y}||_2^2 + \lambda||\theta||_1)\\
@@ -210,7 +214,7 @@ $$
 &\text{Alternative:}\\
 &= -\frac{1}{n}X^T(y-\hat{y})+\lambda\cdot{\partial }(||\theta||_1)
 \end{aligned}
-$$
+```
 
 # b) L2 Ridge Regularization (Ridge Regression)
 **Goal of L2 Ridge Regularization:**
@@ -223,9 +227,9 @@ $$
 - The penalty of L2 Ridge Regularisation is calculated by combining the sum of squares of the weights, as shown below:
 
 **Formula (Summation Form):**\
-$$
+```math
 \frac{\lambda}{2}\sum_{j=1}^{m}\theta_{j}^{2}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularisation penalty constant (recommended: 0.0001)\
@@ -233,65 +237,65 @@ m = Number of total columns (Total features in a dataset)\
 $\theta_{j}$ = Weights for each feature (from 1 - m)
 
 **Formula (Matrix Form):**\
-$$
+```math
 \frac{\lambda}{2}||\theta||_2^{2}
-$$
+```
 
 **Combining L2 (Ridge) Regularization with MSE:**\
 **Summation Form:**
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2} + \frac{\lambda}{2}\sum_{i=1}^{m}(\theta_{i})^{2}
-$$
+```
 
 **Matrix Form:**
-$$
+```math
 \frac{1}{2n}||y-\hat{y}||_2^{2} + \frac{\lambda}{2}||\theta||_2^{2}
-$$
+```
 
 **L2 Ridge Regularization gradient (Summation Form)**:
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(\frac{\lambda}{2}\sum_{i=1}^{m}(\theta_{i})^{2})\\
 &= \frac{\lambda}{2}\cdot 2\cdot \theta_{j}\\
 &= \lambda\theta_{j}
 \end{aligned}
-$$
+```
 
 **Where:**\
 $\lambda$ = Regularization penalty constant\
 $\theta_{j}$ = Weights at the jth feature
 
 **L2 Ridge Regularization gradient (Matrix Form)**:
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_j}(\frac{\lambda}{2}||\theta||_2^{2})\\
 &= \frac{\lambda}{2}\cdot 2\cdot \theta_j\\
 &= \lambda\theta_{j}
 \end{aligned}
-$$
+```
 
 **Combining the gradient of MSE and L2 Ridge**:\
 **Summation Form**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2} + \frac{\lambda}{2}\sum_{i=1}^{m}\theta_{j}^2)\\
 &= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})x_{ij}+\lambda\theta_j\\
 \end{aligned}
-$$
+```
 **Where:**\
 $\theta_j:$ Weights for jth feature\
 $\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})x_{ij}$: Gradient of MSE\
 $\lambda$: Regularization penalty constant
 
 **Matrix Form**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}||y-\hat{y}||_2^{2} + \frac{\lambda}{2}||\theta||_2^2)\\
 &= \frac{1}{n}X^T(y-\hat{y})+\lambda\theta\\
 \end{aligned}
-$$
+```
 
 **Example of Ridge Regularization on dataset**\
 Let's assume we have a house dataset with 3 features, which are size, number of bedrooms and number of bathrooms, and y output as price.
@@ -303,7 +307,7 @@ Let's assume we have a house dataset with 3 features, which are size, number of 
 - $\lambda$, Hyperparameter: 0.0001
 
 Ridge, L2 Penalty: 
-$$
+```math
 \begin{aligned}
 & \lambda\cdot\sum_{i=1}^{3}(\theta_i)^2\\
 &= \lambda\cdot(\theta_1^2 + \theta_2^2 + \theta_3^2)\\
@@ -311,7 +315,7 @@ $$
 &=0.0001(29)\\
 &=0.0029
 \end{aligned}
-$$
+```
 
 **Weights value after penalty:**
 - $\theta_1$, Size: 3.9971
@@ -328,9 +332,9 @@ This shows that Ridge helps shrink the weights of each features, but not entirel
 - Thus, the formula of Elastic Net Regularization is as below:
 
 **Formula (Summation Form)**
-$$
+```math
 \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})
-$$
+```
 **Where:**\
 $\lambda$ = Regularization penalty constant (recommended: 0.0001)\
 $\alpha$ = Alpha constant to control L1 and L2 penalty (recommended: 0.05)\
@@ -338,9 +342,9 @@ m = Number of total columns (Total features in a dataset)\
 $\theta_{i}$ = Weights for each feature (from 1 - m)
 
 **Formula (Matrix Form)**
-$$
+```math
 \lambda\alpha||\theta||_1 + (1-\alpha)||\theta||_2^{2}
-$$
+```
 
 - As you can see, in Elastic Net Regularization, it implements both the `weight absolute value penalty` from L1 Lasso and the `weight square penalty` from L2 Ridge.
 - Furthermore, it introduces a new constant, which is $\alpha$. Alpha here is used to act as a **controller** to adjust the ratio of L1 and L2 mixing.
@@ -349,23 +353,23 @@ $$
 **Combining Elastic Net Regularization with MSE:**
 
 **Summation Form:**
-$$
+```math
 \frac{1}{2n}\sum_{i=1}^{n}(y-\hat{y_{i}})^{2} + \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})
-$$
+```
 
 **Matrix Form:**
-$$
+```math
 \frac{1}{2n}||y-\hat{y}||_2^{2} + \lambda\alpha||\theta||_1 + \lambda(1-\alpha)||\theta||_2^{2}
-$$
+```
 
 **Elastic Net Regularization Gradient (Summation Form):**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}[\lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}(\theta_{i})^{2})]\\
 &= \lambda\alpha\begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases} + 2\lambda(1-\alpha)\theta_{j}\\
 &= \lambda\alpha\cdot \text{sign}(\theta_{j})+2\lambda(1-\alpha)\theta_{j}, \text{sign(0)}\in[-1, 1]
 \end{aligned}
-$$
+```
 **Where:**\
 $\lambda$ = Regularization penalty constant\
 $\alpha$ = Mixing Ratio for L1 and L2\
@@ -375,33 +379,33 @@ sign($\theta_j$) = 1 when $\theta_j > 0$\
 sign($\theta_j$) $\in$ [-1, 1] when $\theta_j = 0$
 
 **Elastic Net Regularization Gradient (Matrix Form):**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}[\lambda(\alpha||\theta||_1 + (1-\alpha)||\theta||_2^{2})]\\
 &= \lambda\alpha\begin{cases} -1& \text{if } \theta_{j} < 0 \\ {[-1, 1]} & \text{if } \theta_{j} = 0 \\ 1& \text{if } \theta_{j}> 0 \end{cases} + 2\lambda(1-\alpha)\theta_{j}\\
 &= \lambda\alpha\cdot \text{sign}(\theta_{j})+2\lambda(1-\alpha)\theta_{j}, \text{sign(0)}\in[-1, 1]
 \end{aligned}
-$$
+```
 
 **Combining the gradient of MSE and Elastic Net:**
 
 **Summation Form:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2} + \lambda(\alpha\sum_{i=1}^{m}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{m}\theta_{i}^{2})\\
 &= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})x_{ij}+\lambda\alpha\cdot \text{sign}(\theta_{j})+2\lambda(1-\alpha)\theta_{j}, \text{sign(0)}\in[-1, 1]\\
 \end{aligned}
-$$
+```
 
 **Matrix Form:**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}(J(\theta))\\
 &= \frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}||y-\hat{y}||_2^{2} + \lambda\alpha||\theta||_1 + (1-\alpha)||\theta||_2^{2}\\
 &= \frac{1}{n}X^T(y-\hat{y})+\lambda\alpha\cdot \text{sign}(\theta_{j})+2\lambda(1-\alpha)\theta_{j}, \text{sign(0)}\in[-1, 1]\\
 \end{aligned}
-$$
+```
 
 - You can see that the gradient proof is just combining the gradient of MSE, L1 and L2 together. We're also reusing the same sign logic from the L1 Lasso Regularization above.
 
@@ -416,14 +420,14 @@ Let's assume we have a house dataset with 3 features, which are size, number of 
 - $\alpha$, Hyperparameter: 0.3
 
 Elastic Net Penalty:
-$$
+```math
 \begin{aligned}
 & \lambda(\alpha\sum_{i=1}^{3}|\theta_{i}| + (1-\alpha)\sum_{i=1}^{3}\theta_{i}^{2})\\
 &= 0.0001(0.3(|4|+|2|+|3|)+(1-0.3)(4^2+2^2+3^2))\\
 &=0.0001(0.9+20.3)\\
 &=0.00212\\
 \end{aligned}
-$$
+```
 **Weights value after penalty:**
 - $\theta_1$, Size: **3.99788**
 - $\theta_2$, Number of bedrooms: **1.99788**

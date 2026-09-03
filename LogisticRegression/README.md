@@ -2,7 +2,9 @@
 **Aim: To use a similar approach like Linear Regression but to calculate the probability of an event most likely to occur**
 
 # Formula: 
-$$\frac{1}{1+e^{-(b_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{m}x_{m})}}\= \frac{1}{1+e^{-z}}$$
+```math
+\frac{1}{1+e^{-(b_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+...+\theta_{m}x_{m})}}\= \frac{1}{1+e^{-z}}
+```
 
 **Where:**\
 $\theta_{m}$ = Weights for mth column (mth feature)\
@@ -10,8 +12,12 @@ $x_{m}$ = Value for the mth column (mth feature)\
 $b_{0}$ = Bias
 
 **Sigmoid Function Breakdown:**\
-$$g(z)=\frac{1}{1+e^{-z}}$$\
-$$z=\sum_{i=1}^{n}x_{i}\theta_{i}+b$$
+```math
+g(z)=\frac{1}{1+e^{-z}}
+```
+```math
+z=\sum_{i=1}^{n}x_{i}\theta_{i}+b
+```
 
 **Derivative of sigmoid function in logistic regression:**
 ```math

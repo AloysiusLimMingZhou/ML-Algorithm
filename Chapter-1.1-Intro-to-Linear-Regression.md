@@ -8,7 +8,9 @@
 **1. What is Linear Regression?**
 - 
 - In simple terms, the most basic form of Linear Regression is very similar to the line function that most have learnt during high school, which is as below:\
-$$y = \theta_0 + X\theta_1 + \epsilon$$
+```math
+y = \theta_0 + X\theta_1 + \epsilon
+```
 Where:
 - y = The output (actual value)
 - $\theta_0$ = The y-intercept (we will call it as bias)
@@ -34,7 +36,9 @@ Thus, we will need a different approach to handle such problems, where we will b
 **Multiple Linear Regression (MLR)**
 -
 The general formula of MLR can be described as below:
-$$y = \theta_0+X_1\theta_1+X_2\theta_2+...+X_m\theta_m$$
+```math
+y = \theta_0+X_1\theta_1+X_2\theta_2+...+X_m\theta_m
+```
 **Where:**
 y = The output (actual value)\
 $\theta_0$ = The bias mentioned above\
@@ -53,7 +57,9 @@ In short, each X's represents a single variable(feature) that influence the y(ou
 
 This can be rewritten cleanly using the summation notation:
 **Multiple Linear Regression (Summation):**
-$$y = \theta_0 + \sum_{j=1}^{m}X_j\theta_j$$
+```math
+y = \theta_0 + \sum_{j=1}^{m}X_j\theta_j
+```
 **Where:**
 y = The output value\
 $\theta_0$ = The bias value\
@@ -65,7 +71,7 @@ Furthermore, in practical coding when building these algorithms, we'll be repres
 Before we show the matrix form of Linear Regression, here are the constant notations that'll be used throughout the notes and you should know to prevent confusion for the readers.
 
 Suppose we have a dataset, with m features and n data samples. We then set y as the target values with X as the input values, then $\theta$ as the weights values and b as the bias value. Thus, the matrix format will be as below:
-$$
+```math
 y=\begin{bmatrix}
 y_1\\
 y_2\\
@@ -90,21 +96,23 @@ X_{n1} & X_{n2} & X_{n3} & ... & X_{nm}\\
 b=\begin{bmatrix}
 b_1
 \end{bmatrix}
-$$
+```
 
 The shape of each matrix will be:
-$$
+```math
 \begin{aligned}
 \text{Shape y: } (n, 1), \\
 \text{Shape X: } (n, m), \\
 \text{Shape }\theta\text{: } (m, 1), \\
 \text{Shape b: } (1, 1)
 \end{aligned}
-$$
+```
 
 **Thus,**
 **Multiple Linear Regression (Matrix form):**
-$$y = X\theta + b$$
+```math
+y = X\theta + b
+```
 **Where:**
 y = The output matrix with shape of (n, 1)\
 X = The input matrix with shape of (n, m)\
@@ -112,12 +120,12 @@ $\theta$ = The weight matrix with shape of (m, 1)\
 b = The bias with shape of (1, 1)
 
 Based on the matrix form of each variable, it is closely resembles:
-$$
+```math
 \begin{aligned}
 & y = X\theta + b\\
 &\approx y_i = \theta_0 + \sum_{j=1}^{m}x_{ij}\theta_j, i = 1,...,n 
 \end{aligned}
-$$
+```
 - Where $y_i$ represents the single data sample target value and $X_i$ represents the single data input values, with i as data sample index from 1 to n.
 - In the general Multiple Linear Regression above, we're simplifying it by excluding the index i, but in reality it is a formula for a single data sample. If we want to include all data samples, we'll be using index i such that $y_i$ and $x_ij$ is the target and input value for the ith data sample
 
@@ -164,7 +172,9 @@ In Multiple Linear Regression, you can imagine it as a multidimensional graph wh
 - Additionally, we have divided the total loss with the total number of dataset (n) to calculate the average loss. This is to prevent gradient exploding due to large loss value.
 
 **Formula (Summation):**
-$$J(\theta)=\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$
+```math
+J(\theta)=\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}
+```
 
 **Where:**
 1. $J(\theta)$: Cost function (MSE)
@@ -173,7 +183,9 @@ $$J(\theta)=\frac{1}{2n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$
 4. $y_i$ = Actual value for the ith data sample
 
 **Formula (Matrix):**
-$$J(\theta)=\frac{1}{2n}||y - \hat{y_{i}}||_2^{2}$$
+```math
+J(\theta)=\frac{1}{2n}||y - \hat{y_{i}}||_2^{2}
+```
 
 **Where:**\
 $||y-\hat{y}||_2^2$: L2 Norm of Mean Square Error
@@ -206,7 +218,7 @@ Thus, in `Gradient Descent`, we will be minimizing the error by taking the **MSE
 Below is the derivation of MSE with respect to weights and bias:
 
 **Derivative of loss w.r.t Weights**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial \theta_{j}}L(\theta)\\
 & =\frac{\partial }{\partial \theta_{j}}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -217,7 +229,7 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(x_{ij}+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})x_{ij}
 \end{aligned}
-$$
+```
 **Where:**\
 $L(\theta)$ = Loss function\
 n = Number of total rows (Total dataset count)\
@@ -228,7 +240,7 @@ $\hat{y}$ = Predicted value\
 y = Actual value\
 
 **Derivative of loss w.r.t Bias**
-$$
+```math
 \begin{aligned}
 & \frac{\partial }{\partial b}L(\theta)\\
 & =\frac{\partial }{\partial b}(\frac{1}{2n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})^{2}\\
@@ -239,7 +251,7 @@ $$
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})\cdot ((0+0))-(0+0))\\
 & =\frac{1}{n}\sum_{i=1}^{n}(\hat{y_{i}}-y_{i})
 \end{aligned}
-$$
+```
 **Where:**\
 $L(\theta)$ = Loss function\
 n = Number of total rows (Total dataset count)\
@@ -252,8 +264,12 @@ y = Actual value\
 **Additional Notes:** The derivative of MSE in matrix form will be shown in Section 3b): OLS method later on
 
 Before we continue explaining the graph, the formula for Gradient Descent is as below:
-$$\theta = \theta-\alpha\frac{\partial J(\theta)}{\partial \theta}$$
-$$b = b - \alpha\frac{\partial J(\theta)}{\partial b}$$
+```math
+\theta = \theta-\alpha\frac{\partial J(\theta)}{\partial \theta}
+```
+```math
+b = b - \alpha\frac{\partial J(\theta)}{\partial b}
+```
 Where:
 1. $\theta$: Feature Weights
 2. $\alpha$: Learning Rate
@@ -277,17 +293,19 @@ Below is the derivation of the OLS function:\
 For z is a matrix with a fixed size:
 
 **Let:**
-$$z=(y-X\theta)$$
+```math
+z=(y-X\theta)
+```
 **Then:**
-$$
+```math
 \begin{aligned}
 & J(\theta)= \frac{1}{2n}z^Tz\\
 & =\frac{1}{2n}(y-X\theta)^T(y-X\theta)\\
 & \approx\frac{1}{2n}\sum_{i=1}^{n}(y-\hat{y})^{2}, \hat{y}=X\theta\\
 \end{aligned}
-$$
+```
 **Thus,**
-$$
+```math
 \begin{aligned}
 & \frac{\partial J(\theta)}{\partial \theta} =\frac{\partial }{\partial \theta}(\frac{1}{2n}(y-X\theta)^T(y-X\theta))\\
 & = \frac{1}{2n}\frac{\partial }{\partial \theta}((X\theta)^TX\theta-(X\theta)^Ty-y^T(X\theta)+y^Ty)\\
@@ -299,7 +317,7 @@ $$
 & = -\frac{1}{n}(X^Ty-X^TX\theta)\\
 & = -\frac{1}{n}X^T(y-X\theta)
 \end{aligned}
-$$
+```
 
 **Where:**
 1. X: Features Matrix
@@ -314,37 +332,49 @@ $$
 ****
 **Step 3 Explanation:**\
 The rule we used in step 3 is called `transpose rule`, which is as below:
-$$a^Tb=(a^Tb)^T=b^Ta$$
+```math
+a^Tb=(a^Tb)^T=b^Ta
+```
 Where $a^Tb$ is scalar, which is a (1x1) matrix. This is because the transpose of a single number its still itself. For example, $3^T=3$.
 
 Thus, since our $(X\theta)^Ty$ is scalar, (1x1) matrix, we can apply the transpose rule:
-$$(X\theta)^Ty = ((X\theta)^Ty)^T =  y^T(X\theta)$$
+```math
+(X\theta)^Ty = ((X\theta)^Ty)^T =  y^T(X\theta)
+```
 
 **Step 5 Part 1 Explanation:**\
 Symmetrical matrix refers to a square matrix who is equal to its transposed, for example:
-$$
+```math
 A=
 \begin{pmatrix}
 1 & 1 & -1\\
 1 & 2 & 0\\
 -1 & 0 & 5
 \end{pmatrix}
-$$
+```
 In the rule $\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta$, it only works when A matrix is symmetrical. In our case, our symmetrical A matrix refers to $X^TX$, as dot product of a matrix with its transpose will form a squared symmetrical matrix.
 
 Thus, you may visualize the comparison between the rule and our OLS derivation in step 5 as below:
-$$\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta$$
-$$\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta$$
+```math
+\frac{\partial }{\partial \theta}(\theta^T(X^TX)\theta)=2X^TX\theta
+```
+```math
+\frac{\partial }{\partial \theta}(\theta^TA\theta)=2A\theta
+```
 Where both $X^TX$ and A are symmetrical matrix
 
 **Step 5 Part 2 Explanation:**\
 In step 5, we use dimension consistency rules, where we ensure there is no dimension mismatch in matrix arithmetic operation: 
 
 Thus, since $y^TX\theta$ is scalar,
-$$2y^TX\theta=(2y^TX\theta)^T=2(X\theta)^Ty=(2(X\theta)^Ty)^T=2(X^Ty)^T\theta$$
+```math
+2y^TX\theta=(2y^TX\theta)^T=2(X\theta)^Ty=(2(X\theta)^Ty)^T=2(X^Ty)^T\theta
+```
 
 And then we will apply the rule where $\frac{\partial }{\partial \theta}(a^T\theta)=a$:
-$$\frac{\partial }{\partial \theta}((X^Ty)^T\theta)=X^Ty$$
+```math
+\frac{\partial }{\partial \theta}((X^Ty)^T\theta)=X^Ty
+```
 Since $y^TX\theta$ is scalar, we can apply transpose rule to rewrite it as $(X^Ty)^T\theta$, which then we can apply the rule $\frac{\partial }{\partial \theta}(a^T\theta)=a$
 ****
 **Additional Notes:** 
@@ -353,15 +383,17 @@ Since $y^TX\theta$ is scalar, we can apply transpose rule to rewrite it as $(X^T
 - For example after getting the average of gradient by dividing it with the total dataset, 1000 rows of data vs 1000000 rows of data will have roughly similar numbers as the gradient we calculated is the average across all the data. Likewise, if we do not divide it with n, the gradient we get is the total sum of all the data rows, which will be very large when we have large dataset.
 
 If we make the derivative of the MSE, $J(\theta)$ as 0 (which matches minimum loss as gradient = 0 at minimum point), you'll get:
-$$
+```math
 \begin{aligned}
 & 0 = -\frac{1}{n}(X^Ty-X^TX\theta)\\
 & X^TX\theta=X^Ty
 \end{aligned}
-$$
+```
 
 Thus, we can form a closed formula for minimizing the weights, $\theta$ by throwing the $X^TX$ into right hand side:
-$$\theta = (X^TX)^{-1}X^Ty$$
+```math
+\theta = (X^TX)^{-1}X^Ty
+```
 
 As a result, we don't need any steps like in gradient descent, where we can directly throw in this formula to calculate the minimum value of the loss, assuming everything here is in matrix form
 
