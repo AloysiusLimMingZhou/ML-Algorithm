@@ -105,14 +105,14 @@ For both Primal and Dual Lagrangian Problem, we must follow their constraint in 
 
 However, remember that our goal is to minimize our Lasso loss function so that the optimal minimum loss will be found. As a result, the final primal Lagrangian solution should be:
 ```math
-min_{\theta} max_{\lambda; \lambda \ge 0} \mathcal{L}(\theta, \lambda) := p^*\\
+min_{\theta} max_{\lambda; \lambda \ge 0} \mathcal{L}(\theta, \lambda) := p^*
 ```
 Where we are minimizing our Lasso loss and at the same time maximize the Lagrangian Multiplier to get the most optimal solution in Primal Lagrangian. We'll create a notation and call it $`p^*`$, and set its value to the most optimal solution in Primal Lagrangian.
 
 # Dual Lagrangian Function
 In Dual Lagrangian, we'll be taking our Primal Lagrangian solution and convert it slightly. So we'll take the final solution, and flip the min and max position as below:
 ```math
-g(\lambda) = min_{\theta} \mathcal{L}(\theta, \lambda)\\
+g(\lambda) = min_{\theta} \mathcal{L}(\theta, \lambda)
 ```
 Geometrically, the reason we flip the min and max position is that in Dual Lagrangian, g($`\lambda`$), it is always a concave function even though the $`f(\theta)`$, $`g(\theta)`$ in primal Lagrangian is convex function.
 
